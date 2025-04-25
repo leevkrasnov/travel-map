@@ -7,11 +7,13 @@ import TripDetails from './TripDetails'
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<TripList />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/trip/:id" element={<TripDetails />} />
-    </Routes>
+    <div className="font-montserrat">
+      <Routes>
+        <Route path="/" element={<TripList />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/trip/:id" element={<TripDetails />} />
+      </Routes>
+    </div>
   )
 }

@@ -1,3 +1,3 @@
 export default function Login() {
-  return <div>Hello, Login!</div>;
+  return <div className="text-4xl">Hello, Login!</div>
 }
