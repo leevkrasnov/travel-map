@@ -1,19 +1,21 @@
 import { Routes, Route } from 'react-router'
-import Auth from './Authorization/Auth'
-import Login from './Authorization/Login'
-import Register from './Authorization/Register'
-import TripList from './TripList'
-import TripDetails from './TripDetails'
+import AuthPage from './auth/AuthPage'
+import Login from './auth/Login'
+import Register from './auth/Register'
+import MainPage from './main/MainPage'
+import TripList from './main/TripList'
+import TripDetails from './main/TripDetails'
 
 export default function App() {
   return (
     <div className="font-montserrat">
       <Routes>
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/trip" element={<TripList />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/trips" element={<TripList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/trip/:id" element={<TripDetails />} />
+        <Route path="/trips/:id" element={<TripDetails />} />
       </Routes>
     </div>
   )
