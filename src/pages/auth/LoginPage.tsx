@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-export default function Login() {
+export default function LoginPage() {
   return (
     <div>
       <p className="text-2xl">Login</p>

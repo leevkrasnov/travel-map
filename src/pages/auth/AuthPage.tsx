@@ -1,6 +1,5 @@
 import { Link } from 'react-router'
-
-import AuthButton from './AuthButton'
+import AuthButton from '@/components/auth/AuthButton'
 
 export default function AuthPage() {
   return (
