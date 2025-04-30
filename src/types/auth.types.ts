@@ -1,8 +1,8 @@
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 import { z } from 'zod'
 
-//RegisterFormField
-export interface RegisterFormProps {
+//FormField
+export interface FormFieldProps {
   id: string
   label: string
   type: string
@@ -28,3 +28,11 @@ export const RegisterSchema = z
 
 export type RegisterValues = z.infer<typeof RegisterSchema>
 export type RegisterPayload = Omit<RegisterValues, 'confirmPassword'>
+
+//LoginForm
+export const LoginSchema = z.object({
+  email: z.string().min(1, 'Обязательное поле').email('Недопустимый формат'),
+  password: z.string().min(1, 'Обязательное поле'),
+})
+
+export type LoginValues = z.infer<typeof LoginSchema>

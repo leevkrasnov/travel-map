@@ -1,13 +1,13 @@
-import type { RegisterFormProps } from '@/types/register.types'
+import type { FormFieldProps } from '@/types/auth.types'
 
-export default function RegisterFormField({
+export default function FormField({
   id,
   label,
   type,
   register,
   placeholder,
   error,
-}: RegisterFormProps) {
+}: FormFieldProps) {
   return (
     <div>
       <label htmlFor={id} className="sr-only">

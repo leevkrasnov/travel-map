@@ -3,29 +3,23 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import FormField from '@/components/auth/FormField'
 import AuthButton from './AuthButton'
 
-import { RegisterSchema } from '@/types/auth.types'
-import { RegisterPayload } from '@/types/auth.types'
-import { RegisterValues } from '@/types/auth.types'
+import { LoginSchema } from '@/types/auth.types'
+import { LoginValues } from '@/types/auth.types'
 
-export default function RegisterForm() {
+export default function LoginForm() {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<RegisterValues>({
+  } = useForm<LoginValues>({
     mode: 'onChange',
-    resolver: zodResolver(RegisterSchema),
+    resolver: zodResolver(LoginSchema),
   })
 
-  const onSubmit = async (data: RegisterValues) => {
-    const payload: RegisterPayload = {
-      email: data.email,
-      password: data.password,
-    }
-
+  const onSubmit = async (data: LoginValues) => {
     await new Promise((resolve) => setTimeout(resolve, 1000))
-    alert(JSON.stringify(payload))
+    alert(JSON.stringify(data))
 
     reset()
   }
@@ -50,16 +44,7 @@ export default function RegisterForm() {
         error={errors.password}
       />
 
-      <FormField
-        id="confirmPassword"
-        label="Подтвердите пароль:"
-        type="password"
-        placeholder="Подтвердите пароль"
-        register={register('confirmPassword')}
-        error={errors.confirmPassword}
-      />
-
-      <AuthButton variant="Завершить" disabled={isSubmitting} />
+      <AuthButton variant="Вход" disabled={isSubmitting} />
     </form>
   )
 }

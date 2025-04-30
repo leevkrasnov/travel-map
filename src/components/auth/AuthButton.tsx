@@ -1,11 +1,18 @@
-type AuthButtonProps = {
+import { LoaderCircle } from 'lucide-react'
+
+interface AuthButtonProps {
   variant: string
+  disabled: boolean
 }
 
-export default function AuthButton({ variant }: AuthButtonProps) {
+export default function AuthButton({ variant, disabled }: AuthButtonProps) {
   return (
-    <button className="py-1 text-sm px-6 border rounded-2xl text-gray-100 bg-gray-800 hover:bg-gray-700 duration-300 cursor-pointer">
-      {variant}
+    <button
+      type="submit"
+      disabled={disabled}
+      className="flex items-center justify-center bg-gray-800 border-2 border-gray-800 cursor-pointer mt-4 text-white rounded-full p-2 disabled:border-gray-700 disabled:bg-gray-700 hover:bg-gray-700 hover:border-gray-700 duration-500"
+    >
+      {disabled ? <LoaderCircle className="animate-spin" /> : variant}
     </button>
   )
 }
