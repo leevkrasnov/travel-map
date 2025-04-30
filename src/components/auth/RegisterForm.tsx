@@ -2,10 +2,12 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import FormField from '@/components/auth/FormField'
 import AuthButton from './AuthButton'
+import { registerUser } from '@/utils/authService'
 
 import { RegisterSchema } from '@/types/auth.types'
 import { RegisterPayload } from '@/types/auth.types'
 import { RegisterValues } from '@/types/auth.types'
+import { FirebaseError } from 'firebase/app'
 
 export default function RegisterForm() {
   const {
@@ -13,21 +15,24 @@ export default function RegisterForm() {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
+    setError,
   } = useForm<RegisterValues>({
     mode: 'onChange',
     resolver: zodResolver(RegisterSchema),
   })
 
-  const onSubmit = async (data: RegisterValues) => {
-    const payload: RegisterPayload = {
-      email: data.email,
-      password: data.password,
+  const onSubmit = async (data: RegisterPayload) => {
+    try {
+      await registerUser(data.email, data.password)
+      reset()
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        if (error.code === 'auth/email-already-in-use') {
+          setError('email', { message: 'Пользователь уже зарегистрирован' })
+        }
+        console.error(error.code)
+      }
     }
-
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    alert(JSON.stringify(payload))
-
-    reset()
   }
 
   return (

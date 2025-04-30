@@ -18,7 +18,7 @@ export const RegisterSchema = z
     password: z
       .string()
       .min(1, 'Обязательное поле')
-      .min(4, 'Минимум 4 символа'),
+      .min(6, 'Минимум 6 символов'),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
