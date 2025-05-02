@@ -1,19 +1,28 @@
-import { Routes, Route } from 'react-router'
+import { Routes, Route, Navigate } from 'react-router'
 import AuthPage from './auth/LoginPage'
 import RegisterPage from './auth/RegisterPage'
-import MainPage from './main/MainPage'
-import TripList from './main/TripList'
-import TripDetails from './main/TripDetails'
+import MainPage from './home/HomePage'
+
+import RequireAuth from '@/components/auth-page/RequireAuth'
+import RequireAnon from '@/components/auth-page/RequireAnon'
+import { useAuthListener } from '@/hooks/useAuthListener'
 
 export default function App() {
+  useAuthListener()
+
   return (
     <div className="font-montserrat bg-gray-100">
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/trips" element={<TripList />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/trips/:id" element={<TripDetails />} />
+        <Route path="/" element={<RequireAnon> {<AuthPage />}</RequireAnon>} />
+        <Route
+          path="/register"
+          element={<RequireAnon> {<RegisterPage />}</RequireAnon>}
+        />
+        <Route
+          path="/home"
+          element={<RequireAuth>{<MainPage />}</RequireAuth>}
+        />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   )

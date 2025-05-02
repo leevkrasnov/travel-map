@@ -12,7 +12,7 @@ export interface FormFieldProps {
 }
 
 //RegisterForm
-export const RegisterSchema = z
+export const RegisterFormSchema = z
   .object({
     email: z.string().min(1, 'Обязательное поле').email('Недопустимый формат'),
     password: z
@@ -26,13 +26,13 @@ export const RegisterSchema = z
     path: ['confirmPassword'],
   })
 
-export type RegisterValues = z.infer<typeof RegisterSchema>
-export type RegisterPayload = Omit<RegisterValues, 'confirmPassword'>
+export type RegisterFormData = z.infer<typeof RegisterFormSchema>
+export type RegisterPayload = Omit<RegisterFormData, 'confirmPassword'>
 
 //LoginForm
-export const LoginSchema = z.object({
+export const LoginFormSchema = z.object({
   email: z.string().min(1, 'Обязательное поле').email('Недопустимый формат'),
   password: z.string().min(1, 'Обязательное поле'),
 })
 
-export type LoginValues = z.infer<typeof LoginSchema>
+export type LoginFormValues = z.infer<typeof LoginFormSchema>

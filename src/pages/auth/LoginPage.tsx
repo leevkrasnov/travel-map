@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
-import LoginForm from '@/components/auth/LoginForm'
+import LoginForm from '@/components/auth-page/LoginForm'
 
-export default function AuthPage() {
+export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="relative flex flex-col w-[450px] h-[600px] pt-14 px-10 bg-gray-50 rounded-lg shadow-md">

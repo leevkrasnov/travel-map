@@ -1,13 +1,16 @@
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
-import FormField from '@/components/auth/FormField'
+import { FirebaseError } from 'firebase/app'
+
+import FormField from '@/components/auth-page/FormField'
 import AuthButton from './AuthButton'
 import { registerUser } from '@/utils/authService'
+import { handleFirebaseError } from '@/utils/errorHandler'
 
-import { RegisterSchema } from '@/types/auth.types'
+import { RegisterFormSchema } from '@/types/auth.types'
 import { RegisterPayload } from '@/types/auth.types'
-import { RegisterValues } from '@/types/auth.types'
-import { FirebaseError } from 'firebase/app'
+import { RegisterFormData } from '@/types/auth.types'
 
 export default function RegisterForm() {
   const {
@@ -16,21 +19,22 @@ export default function RegisterForm() {
     reset,
     formState: { errors, isSubmitting },
     setError,
-  } = useForm<RegisterValues>({
+  } = useForm<RegisterFormData>({
     mode: 'onChange',
-    resolver: zodResolver(RegisterSchema),
+    resolver: zodResolver(RegisterFormSchema),
   })
+
+  const navigate = useNavigate()
 
   const onSubmit = async (data: RegisterPayload) => {
     try {
       await registerUser(data.email, data.password)
+      navigate('/home')
+
       reset()
     } catch (error) {
       if (error instanceof FirebaseError) {
-        if (error.code === 'auth/email-already-in-use') {
-          setError('email', { message: 'Пользователь уже зарегистрирован' })
-        }
-        console.error(error.code)
+        handleFirebaseError(error, setError)
       }
     }
   }

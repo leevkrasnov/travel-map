@@ -1,12 +1,15 @@
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
-import FormField from '@/components/auth/FormField'
+import { FirebaseError } from 'firebase/app'
+
+import FormField from '@/components/auth-page/FormField'
 import AuthButton from './AuthButton'
 import { loginUser } from '@/utils/authService'
+import { handleFirebaseError } from '@/utils/errorHandler'
 
-import { LoginSchema } from '@/types/auth.types'
-import { LoginValues } from '@/types/auth.types'
-import { FirebaseError } from 'firebase/app'
+import { LoginFormSchema } from '@/types/auth.types'
+import { LoginFormValues } from '@/types/auth.types'
 
 export default function LoginForm() {
   const {
@@ -15,25 +18,22 @@ export default function LoginForm() {
     reset,
     formState: { errors, isSubmitting },
     setError,
-  } = useForm<LoginValues>({
+  } = useForm<LoginFormValues>({
     mode: 'onChange',
-    resolver: zodResolver(LoginSchema),
+    resolver: zodResolver(LoginFormSchema),
   })
 
-  const onSubmit = async (data: LoginValues) => {
+  const navigate = useNavigate()
+
+  const onSubmit = async (data: LoginFormValues) => {
     try {
       await loginUser(data.email, data.password)
+      navigate('/home')
+
       reset()
     } catch (error) {
       if (error instanceof FirebaseError) {
-        if (error.code === 'auth/user-not-found') {
-          setError('email', { message: 'Пользователь не зарегистрирован' })
-        } else if (error.code === 'auth/wrong-password') {
-          setError('password', { message: 'Пароль не подходит' })
-          console.error(error.code)
-        } else {
-          console.error(error)
-        }
+        handleFirebaseError(error, setError)
       }
     }
   }

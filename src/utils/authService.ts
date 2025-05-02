@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth'
 import { auth } from '../firebase'
 import { useAuthStore } from '@/store/AuthStore'
@@ -13,9 +14,7 @@ export const registerUser = async function (email: string, password: string) {
       password
     )
     const user = userCredential.user
-
     useAuthStore.getState().setUser(user)
-    console.log(useAuthStore.getState().user)
     return user
   } catch (error) {
     console.error('Ошибка регистрации пользователя:', error)
@@ -31,14 +30,20 @@ export const loginUser = async function (email: string, password: string) {
       password
     )
     const user = userCredential.user
-    console.log('Auth instance:', auth)
-
     useAuthStore.getState().setUser(user)
     return user
   } catch (error) {
     console.error('Ошибка авторизации:', error)
-    console.log('Auth instance:', auth)
+    throw error
+  }
+}
 
+export const logoutUser = async function () {
+  try {
+    signOut(auth)
+    useAuthStore.getState().setUser(null)
+  } catch (error) {
+    console.error('Не удалось выйти из учетной записи:', error)
     throw error
   }
 }
