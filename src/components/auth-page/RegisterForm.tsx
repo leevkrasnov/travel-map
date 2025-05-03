@@ -8,9 +8,9 @@ import AuthButton from './AuthButton'
 import { registerUser } from '@/utils/authService'
 import { handleFirebaseError } from '@/utils/errorHandler'
 
-import { RegisterFormSchema } from '@/types/auth.types'
-import { RegisterPayload } from '@/types/auth.types'
-import { RegisterFormData } from '@/types/auth.types'
+import { RegisterFormSchema } from '@/types/authForm.types'
+import { RegisterPayload } from '@/types/authForm.types'
+import { RegisterFormData } from '@/types/authForm.types'
 
 export default function RegisterForm() {
   const {

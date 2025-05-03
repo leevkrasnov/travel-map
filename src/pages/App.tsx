@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router'
 import AuthPage from './auth/LoginPage'
 import RegisterPage from './auth/RegisterPage'
-import MainPage from './home/HomePage'
+import HomePage from './home/HomePage'
 
 import RequireAuth from '@/components/auth-page/RequireAuth'
 import RequireAnon from '@/components/auth-page/RequireAnon'
@@ -20,7 +20,7 @@ export default function App() {
         />
         <Route
           path="/home"
-          element={<RequireAuth>{<MainPage />}</RequireAuth>}
+          element={<RequireAuth>{<HomePage />}</RequireAuth>}
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

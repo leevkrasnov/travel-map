@@ -8,8 +8,8 @@ import AuthButton from './AuthButton'
 import { loginUser } from '@/utils/authService'
 import { handleFirebaseError } from '@/utils/errorHandler'
 
-import { LoginFormSchema } from '@/types/auth.types'
-import { LoginFormValues } from '@/types/auth.types'
+import { LoginFormSchema } from '@/types/authForm.types'
+import { LoginFormValues } from '@/types/authForm.types'
 
 export default function LoginForm() {
   const {

@@ -1,7 +1,7 @@
 import { FirebaseError } from 'firebase/app'
 
 import type { UseFormSetError } from 'react-hook-form'
-import type { LoginFormValues } from '@/types/auth.types'
+import type { LoginFormValues } from '@/types/authForm.types'
 
 export const handleFirebaseError = (
   error: FirebaseError,

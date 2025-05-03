@@ -1,4 +1,4 @@
-import type { FormFieldProps } from '@/types/auth.types'
+import type { FormFieldProps } from '@/types/authForm.types'
 
 export default function FormField({
   id,

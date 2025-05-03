@@ -5,9 +5,10 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "baseUrl": ".", // ← обязательно
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"] // относительный путь от baseUrl
-    }
+      "@/*": ["src/*"]
+    },
+    "types": ["node", "vitest/globals", "vitest/jsdom"]
   }
 }
