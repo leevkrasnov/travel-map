@@ -4,7 +4,7 @@ import LoginForm from '@/components/auth-page/LoginForm'
 export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="relative flex flex-col w-[450px] h-[600px] pt-14 px-10 bg-gray-50 rounded-lg shadow-md">
+      <div className="relative flex flex-col h-screen w-screen md:w-[450px] md:h-[600px] pt-60 md:pt-14 px-10 bg-gray-50 rounded-lg shadow-md">
         <h1 className="text-4xl mr-10">Добро пожаловать!</h1>
         <h2 className="mt-14 mb-3 text-lg text-gray-600">Войти в аккаунт</h2>
 

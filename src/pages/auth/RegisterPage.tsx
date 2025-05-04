@@ -5,7 +5,7 @@ import RegisterForm from '@/components/auth-page/RegisterForm'
 export default function RegisterPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="relative flex flex-col w-[450px] h-[600px] py-10 px-10 bg-gray-50 rounded-lg shadow-md">
+      <div className="relative flex flex-col h-screen w-screen md:w-[450px] md:h-[600px] pt-32 md:pt-10 px-10 bg-gray-50 rounded-lg shadow-md">
         <section>
           <Link
             to="/Auth"
