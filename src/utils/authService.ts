@@ -2,11 +2,16 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from 'firebase/auth'
 import { auth } from '../firebase'
 import { useAuthStore } from '@/store/AuthStore'
 
-export const registerUser = async function (email: string, password: string) {
+export const registerUser = async function (
+  userName: string,
+  email: string,
+  password: string
+) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -14,7 +19,13 @@ export const registerUser = async function (email: string, password: string) {
       password
     )
     const user = userCredential.user
+    await updateProfile(user, {
+      displayName: userName,
+    })
+    await user.reload()
+
     useAuthStore.getState().setUser(user)
+
     return user
   } catch (error) {
     console.error('Ошибка регистрации пользователя:', error)
@@ -30,6 +41,7 @@ export const loginUser = async function (email: string, password: string) {
       password
     )
     const user = userCredential.user
+
     useAuthStore.getState().setUser(user)
     return user
   } catch (error) {

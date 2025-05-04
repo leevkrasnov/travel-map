@@ -14,6 +14,7 @@ export interface FormFieldProps {
 //RegisterForm
 export const RegisterFormSchema = z
   .object({
+    userName: z.string().min(1, 'Обязательное поле'),
     email: z.string().min(1, 'Обязательное поле').email('Недопустимый формат'),
     password: z
       .string()

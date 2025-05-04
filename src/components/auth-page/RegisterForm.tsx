@@ -28,7 +28,7 @@ export default function RegisterForm() {
 
   const onSubmit = async (data: RegisterPayload) => {
     try {
-      await registerUser(data.email, data.password)
+      await registerUser(data.userName, data.email, data.password)
       navigate('/home')
 
       reset()
@@ -41,6 +41,15 @@ export default function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
+      <FormField
+        id="userName"
+        label="Ваше имя:"
+        type="text"
+        placeholder="Ваше имя"
+        register={register('userName')}
+        error={errors.userName}
+      />
+
       <FormField
         id="email"
         label="Email:"
