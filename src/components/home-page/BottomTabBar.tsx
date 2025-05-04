@@ -26,7 +26,7 @@ const navItems = [
 
 export default function BottomTabBar() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white shadow-md">
+    <nav className=" bg-white shadow-md">
       <ul className="flex justify-around items-center h-24">
         {navItems.map((item) => (
           <li

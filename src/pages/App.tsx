@@ -17,14 +17,21 @@ export default function App() {
   return (
     <div className="font-montserrat bg-gray-100">
       <Routes>
-        <Route path="/" element={<RequireAnon> {<AuthPage />}</RequireAnon>} />
+        <Route
+          path="/"
+          element={
+            <RequireAnon redirectTo="/home"> {<AuthPage />}</RequireAnon>
+          }
+        />
         <Route
           path="/register"
-          element={<RequireAnon> {<RegisterPage />}</RequireAnon>}
+          element={
+            <RequireAnon redirectTo="/home"> {<RegisterPage />}</RequireAnon>
+          }
         />
         <Route
           path="/home"
-          element={<RequireAuth>{<HomeLayout />}</RequireAuth>}
+          element={<RequireAuth redirectTo="/">{<HomeLayout />}</RequireAuth>}
         >
           <Route index element={<Home />} />
           <Route path="travelList" element={<TravelList />} />
