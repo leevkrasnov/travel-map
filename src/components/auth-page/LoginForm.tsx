@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FirebaseError } from 'firebase/app'
 
-import FormField from '@/components/auth-page/FormField'
-import AuthButton from './AuthButton'
+import FormField from '@/components/common/FormField'
+import UniversalButton from '../common/UniversalButton'
 import { loginUser } from '@/utils/authService'
 import { handleFirebaseError } from '@/utils/errorHandler'
 
 import { LoginFormSchema } from '@/types/authForm.types'
-import { LoginFormValues } from '@/types/authForm.types'
+import type { LoginFormValues } from '@/types/authForm.types'
 
 export default function LoginForm() {
   const {
@@ -39,7 +39,7 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-2">
       <FormField
         id="email"
         label="Email:"
@@ -58,7 +58,7 @@ export default function LoginForm() {
         error={errors.password}
       />
 
-      <AuthButton variant="Вход" disabled={isSubmitting} />
+      <UniversalButton variant="Вход" disabled={isSubmitting} />
     </form>
   )
 }

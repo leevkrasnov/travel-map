@@ -1,10 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router'
 import AuthPage from './auth/LoginPage'
 import RegisterPage from './auth/RegisterPage'
-import Home from './home/Home'
-import AddTravel from './home/AddTravel'
-import Profile from './home/Profile'
-import TravelList from './home/TravelList'
+import HomePage from './home/HomePage'
+import TravelFormPage from './home/TravelFormPage'
+import ProfilePage from './home/ProfilePage'
+import TravelListPage from './home/TravelListPage'
 
 import RequireAuth from '@/components/auth-page/RequireAuth'
 import RequireAnon from '@/components/auth-page/RequireAnon'
@@ -33,10 +33,10 @@ export default function App() {
           path="/home"
           element={<RequireAuth redirectTo="/">{<HomeLayout />}</RequireAuth>}
         >
-          <Route index element={<Home />} />
-          <Route path="travelList" element={<TravelList />} />
-          <Route path="add" element={<AddTravel />} />
-          <Route path="profile" element={<Profile />} />
+          <Route index element={<HomePage />} />
+          <Route path="travelList" element={<TravelListPage />} />
+          <Route path="add" element={<TravelFormPage />} />
+          <Route path="profile" element={<ProfilePage />} />
           <Route path="*" element={<Navigate to="/home" />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />

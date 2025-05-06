@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FirebaseError } from 'firebase/app'
 
-import FormField from '@/components/auth-page/FormField'
-import AuthButton from './AuthButton'
+import FormField from '@/components/common/FormField'
+import UniversalButton from '../common/UniversalButton'
 import { registerUser } from '@/utils/authService'
 import { handleFirebaseError } from '@/utils/errorHandler'
 
@@ -77,7 +77,7 @@ export default function RegisterForm() {
         error={errors.confirmPassword}
       />
 
-      <AuthButton variant="Завершить" disabled={isSubmitting} />
+      <UniversalButton variant="Завершить" disabled={isSubmitting} />
     </form>
   )
 }

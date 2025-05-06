@@ -1,6 +1,6 @@
 import YandexMap from '@/components/home-page/YandexMap'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="h-full">
       <YandexMap />

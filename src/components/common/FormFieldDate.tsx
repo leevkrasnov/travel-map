@@ -1,6 +1,7 @@
 import type { FormFieldProps } from '@/types/authForm.types'
+import { InputMask } from '@react-input/mask'
 
-export default function FormField({
+export default function FormFieldDate({
   id,
   label,
   type,
@@ -13,12 +14,14 @@ export default function FormField({
       <label htmlFor={id} className="sr-only">
         {label}
       </label>
-      <input
+      <InputMask
+        mask="99.99.9999"
+        replacement={{ '9': /\d/ }}
         id={id}
         {...register}
         type={type}
         placeholder={placeholder}
-        className="border-2 border-gray-300 rounded-md p-2 w-full"
+        className="border-2 border-gray-300 rounded-lg p-3 w-full"
         aria-describedby={error ? `${id}-error` : undefined}
       />
       <div className="h-1 mt-1 mx-1">
