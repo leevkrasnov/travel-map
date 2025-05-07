@@ -14,6 +14,7 @@ export const useBottomBarStore = create<BottomBarStoreState>((set) => ({
           nextModal: null,
         }
       }
+
       return {
         nextModal: modal,
         animationPhase: 'closing',
@@ -28,5 +29,8 @@ export const useBottomBarStore = create<BottomBarStoreState>((set) => ({
         animationPhase: newModal !== null ? 'opening' : 'idle',
       }
     }),
-  openAnimation: () => set({ animationPhase: 'idle' }),
+  openAnimation: () =>
+    set(() => {
+      return { animationPhase: 'idle' }
+    }),
 }))
