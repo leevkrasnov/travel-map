@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/store/AuthStore'
+import { useAuthStore } from '@/store/authStore'
 import { Navigate, useLocation } from 'react-router'
 import LoadingSpinner from '../common/LoadingSpinner'
 

@@ -5,7 +5,7 @@ vi.mock('@/store/AuthStore', () => ({
   useAuthStore: vi.fn(),
 }))
 
-import { useAuthStore } from '@/store/AuthStore'
+import { useAuthStore } from '@/store/authStore'
 import RequireAuth from '@/components/auth-page/RequireAuth'
 
 const mockUseAuthStore = vi.mocked(useAuthStore)

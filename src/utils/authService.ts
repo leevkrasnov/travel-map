@@ -5,7 +5,7 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { auth } from '../firebase'
-import { useAuthStore } from '@/store/AuthStore'
+import { useAuthStore } from '@/store/authStore'
 
 export const registerUser = async function (
   userName: string,
