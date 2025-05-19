@@ -1,36 +1,34 @@
-import { MapPinned, CircleUserRound, House, CirclePlus } from 'lucide-react'
+import { MapPinned, CircleUserRound, CirclePlus } from 'lucide-react'
 import { useBottomBarStore } from '@/store/bottombarStore'
+import NavButton from './NavButton'
 
 export default function BottomBar() {
   const startModalChange = useBottomBarStore((state) => state.startModalChange)
 
   return (
-    <nav className="bg-white shadow-md ">
-      <ul className="flex justify-around items-center h-24 text-gray-500 duration-500">
-        <button
-          onClick={() => startModalChange('home')}
-          className="cursor-pointer"
-        >
-          <House size={32} strokeWidth={1.5} />
-        </button>
-        <button
-          onClick={() => startModalChange('travelForm')}
-          className="cursor-pointer"
+    <nav className="bg-white">
+      <ul className="flex justify-around items-center h-24 text-gray-600 duration-500">
+        <NavButton
+          modalVariant="travelList"
+          textVariant="МЕСТА"
+          onClick={() => startModalChange('travelList')}
         >
           <MapPinned size={32} strokeWidth={1.5} />
-        </button>
-        <button
-          onClick={() => startModalChange('travelList')}
-          className="cursor-pointer"
+        </NavButton>
+        <NavButton
+          modalVariant="travelForm"
+          textVariant="ДОБАВИТЬ"
+          onClick={() => startModalChange('travelForm')}
         >
           <CirclePlus size={32} strokeWidth={1.5} />
-        </button>
-        <button
+        </NavButton>
+        <NavButton
+          modalVariant="profile"
+          textVariant="ПРОФИЛЬ"
           onClick={() => startModalChange('profile')}
-          className="cursor-pointer"
         >
           <CircleUserRound size={32} strokeWidth={1.5} />
-        </button>
+        </NavButton>
       </ul>
     </nav>
   )

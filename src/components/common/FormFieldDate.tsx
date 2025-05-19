@@ -21,7 +21,11 @@ export default function FormFieldDate({
         {...register}
         type={type}
         placeholder={placeholder}
-        className="border-2 border-gray-300 rounded-lg p-3 w-full"
+        className={`border ${
+          error
+            ? 'border-rose-900 focus:ring focus:ring-rose-900/50'
+            : 'border-gray-500 focus:ring focus:ring-blue-600'
+        } rounded-lg p-3 w-full duration-200 outline-none focus:outline-none`}
         aria-describedby={error ? `${id}-error` : undefined}
       />
       <div className="h-1 mt-1 mx-1">

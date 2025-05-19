@@ -36,7 +36,10 @@ export default function ModalContainer() {
                 ? 'closed'
                 : false
             }
-            transition={{ type: 'inercia' }}
+            transition={{
+              type: 'tween',
+              duration: 0.2,
+            }}
             onAnimationComplete={(definition) => {
               if (definition === 'closed') closeAnimation()
               if (definition === 'open') openAnimation()

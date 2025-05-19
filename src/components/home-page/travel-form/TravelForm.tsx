@@ -7,7 +7,6 @@ import UniversalButton from '@/components/common/UniversalButton'
 
 import type { TravelFormValues } from '@/types/travelForm.types'
 import { TravelFormSchema } from '@/types/travelForm.types'
-import { useBottomBarStore } from '@/store/bottombarStore'
 
 export default function TravelForm() {
   const {
@@ -20,16 +19,18 @@ export default function TravelForm() {
     resolver: zodResolver(TravelFormSchema),
   })
 
-  const startModalChange = useBottomBarStore((state) => state.startModalChange)
-
   const onSubmit = (data: TravelFormValues) => {
     console.log(data)
     reset()
   }
 
   return (
-    <div className="h-full rounded-t-lg bg-white p-6 shadow-lg flex flex-col">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-2">
+    <div className="h-full rounded-t-2xl bg-gray-50 px-8 shadow-lg flex flex-col">
+      <h1 className="text-4xl mt-10">Добавить путешествие</h1>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-y-2 mt-10"
+      >
         <div>
           <FormField
             id="travelCountry"
@@ -68,14 +69,8 @@ export default function TravelForm() {
           />
         </div>
 
-        <UniversalButton variant="Добавить" disabled={isSubmitting} />
+        <UniversalButton variant="ДОБАВИТЬ" disabled={isSubmitting} />
       </form>
-      <button
-        onClick={() => startModalChange(null)}
-        className="mt-auto rounded bg-blue-500 px-4 py-2 text-white"
-      >
-        Close
-      </button>
     </div>
   )
 }

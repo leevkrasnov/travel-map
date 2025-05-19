@@ -58,7 +58,7 @@ export default function LoginForm() {
         error={errors.password}
       />
 
-      <UniversalButton variant="Вход" disabled={isSubmitting} />
+      <UniversalButton variant="ВХОД" disabled={isSubmitting} />
     </form>
   )
 }

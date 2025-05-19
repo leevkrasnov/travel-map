@@ -11,7 +11,7 @@ export default function App() {
   useAuthListener()
 
   return (
-    <div className="font-montserrat bg-gray-100">
+    <div className="font-montserrat bg-gray-100 tracking-wide antialiased">
       <Routes>
         <Route
           path="/"

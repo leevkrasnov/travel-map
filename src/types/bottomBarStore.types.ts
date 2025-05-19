@@ -7,4 +7,5 @@ export interface BottomBarStoreState {
   startModalChange: (modal: ActiveModalState) => void
   closeAnimation: () => void
   openAnimation: () => void
+  reset: () => void
 }
