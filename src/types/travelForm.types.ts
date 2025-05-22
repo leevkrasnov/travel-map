@@ -3,9 +3,9 @@ import { parseDate } from '@/utils/parseDate'
 
 export const TravelFormSchema = z
   .object({
-    travelCountry: z.string().min(1, 'Обязательное поле'),
-    travelCity: z.string().min(1, 'Обязательное поле'),
-    travelDateStart: z
+    country: z.string().min(1, 'Обязательное поле'),
+    city: z.string().min(1, 'Обязательное поле'),
+    dateStart: z
       .string()
       .regex(/^\d{2}\.\d{2}\.\d{4}$/, {
         message: 'Формат: дд.мм.гггг',
@@ -13,7 +13,7 @@ export const TravelFormSchema = z
       .refine((date) => parseDate(date) !== null, {
         message: 'Несуществующая дата',
       }),
-    travelDateEnd: z
+    dateEnd: z
       .string()
       .regex(/^\d{2}\.\d{2}\.\d{4}$/, {
         message: 'Формат: дд.мм.гггг',
@@ -24,13 +24,17 @@ export const TravelFormSchema = z
   })
   .refine(
     (value) => {
-      const startDate = parseDate(value.travelDateStart)
-      const endDate = parseDate(value.travelDateEnd)
-      return startDate !== null && endDate !== null && startDate <= endDate
+      const parseDateStart = parseDate(value.dateStart)
+      const parseEndDate = parseDate(value.dateEnd)
+      return (
+        parseDateStart !== null &&
+        parseEndDate !== null &&
+        parseDateStart <= parseEndDate
+      )
     },
     {
       message: 'Слишком рано!',
-      path: ['travelDateEnd'],
+      path: ['dateEnd'],
     }
   )
 

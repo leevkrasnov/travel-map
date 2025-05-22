@@ -19,12 +19,14 @@ export const registerUser = async function (
       password
     )
     const user = userCredential.user
+
     await updateProfile(user, {
       displayName: userName,
     })
     await user.reload()
+    const updatedUser = auth.currentUser
 
-    useAuthStore.getState().setUser(user)
+    useAuthStore.getState().setUser(updatedUser)
 
     return user
   } catch (error) {
