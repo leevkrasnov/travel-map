@@ -17,7 +17,7 @@ export default function ModalContainer() {
   return (
     <AnimatePresence>
       {activeModal && (
-        <div className="fixed bottom-24 inset-0 z-10 h-full w-full flex items-end justify-center">
+        <div className="fixed bottom-20 inset-0 z-10 h-full w-full flex items-end justify-center">
           <motion.div
             className="absolute inset-0 bg-black/30"
             initial={{ opacity: 0 }}
@@ -26,7 +26,7 @@ export default function ModalContainer() {
             onClick={() => startModalChange(null)}
           />
           <motion.div
-            className="relative h-[70%] mb-24 w-full"
+            className="relative h-[70%] mb-20 w-full"
             variants={variants}
             initial="closed"
             animate={

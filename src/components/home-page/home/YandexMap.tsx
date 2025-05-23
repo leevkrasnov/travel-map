@@ -41,15 +41,15 @@ export default function YandexMap() {
           {/* <ZoomControl options={{ position: { bottom: 200, right: 20 } }} /> */}
         </Map>
       </YMaps>
-      <div className="absolute right-5 top-20 flex flex-col gap-4">
+      <div className="absolute right-5 top-20 flex gap-2 flex-col">
         <button
-          className="bg-gray-100 text-gray-800 rounded-full w-12 h-12 flex items-center justify-center shadow-2xl hover:bg-white transition cursor-pointer"
+          className="bg-white text-gray-800 w-8 h-8 flex items-center justify-center shadow-2xl hover:bg-gray-50 transition border cursor-pointer"
           onClick={zoomIn}
         >
           <span className="text-3xl">+</span>
         </button>
         <button
-          className="bg-gray-100 text-gray-800 rounded-full w-12 h-12 flex items-center justify-center shadow-2xl hover:bg-white transition cursor-pointer"
+          className="bg-white text-gray-800 w-8 h-8 flex items-center justify-center shadow-2xl hover:bg-gray-50 transition border cursor-pointer"
           onClick={zoomOut}
         >
           <span className="text-3xl">−</span>
