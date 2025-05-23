@@ -10,7 +10,7 @@ export default function FormFieldDate({
   error,
 }: FormFieldProps) {
   return (
-    <div>
+    <div className="relative">
       <label htmlFor={id} className="sr-only">
         {label}
       </label>
@@ -21,20 +21,21 @@ export default function FormFieldDate({
         {...register}
         type={type}
         placeholder={placeholder}
-        className={`border ${
+        className={`border-2 ${
           error
-            ? 'border-rose-900 focus:ring focus:ring-rose-900/50'
-            : 'border-gray-500 focus:ring focus:ring-blue-600'
-        } rounded-lg p-3 w-full duration-200 outline-none focus:outline-none`}
+            ? 'border-flame/50 focus:border-flame'
+            : 'border-cadet-gray focus:border-feldgrau'
+        } rounded-sm p-4 text-lg w-full duration-200 outline-none focus:outline-none`}
         aria-describedby={error ? `${id}-error` : undefined}
       />
-      <div className="h-1 mt-1 mx-1">
-        {error && (
-          <p id={`${id}-error`} className="text-rose-900 text-xs">
-            {error.message}
-          </p>
-        )}
-      </div>
+      {error && (
+        <p
+          id={`${id}-error`}
+          className="absolute bottom-0 right-3 text-flame text-xs bg-gray-50 px-1 transform translate-y-1/2"
+        >
+          {error.message}
+        </p>
+      )}
     </div>
   )
 }

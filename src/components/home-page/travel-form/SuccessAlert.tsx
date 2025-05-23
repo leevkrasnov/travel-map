@@ -9,9 +9,9 @@ export default function SuccessAlert({
 }: SuccessAlertProps) {
   const userName = useUserName()
   return (
-    <div>
-      <h1>
-        {userName}, ты успешно добавил поездку в {travelCountry}({travelCity})
+    <div className="mt-30 mx-10">
+      <h1 className="text-5xl font-bold tracking-wider leading-normal">
+        {userName}, ты успешно добавил поездку в {travelCountry} ({travelCity})
       </h1>
     </div>
   )

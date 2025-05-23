@@ -6,12 +6,14 @@ import HomePage from './home/HomePage'
 import RequireAuth from '@/components/auth-page/RequireAuth'
 import RequireAnon from '@/components/auth-page/RequireAnon'
 import { useAuthListener } from '@/hooks/useAuthListener'
+import Alert from '@/components/common/Alert'
 
 export default function App() {
   useAuthListener()
 
   return (
     <div className="font-montserrat bg-gray-100 tracking-wide antialiased">
+      <Alert />
       <Routes>
         <Route
           path="/"

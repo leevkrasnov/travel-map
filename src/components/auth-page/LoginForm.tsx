@@ -39,24 +39,25 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-2">
-      <FormField
-        id="email"
-        label="Email:"
-        type="text"
-        placeholder="Email"
-        register={register('email')}
-        error={errors.email}
-      />
-
-      <FormField
-        id="password"
-        label="Пароль:"
-        type="password"
-        placeholder="Пароль"
-        register={register('password')}
-        error={errors.password}
-      />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+      <div className="mb-6">
+        <FormField
+          id="email"
+          label="Email:"
+          type="text"
+          placeholder="Email"
+          register={register('email')}
+          error={errors.email}
+        />
+        <FormField
+          id="password"
+          label="Пароль:"
+          type="password"
+          placeholder="Пароль"
+          register={register('password')}
+          error={errors.password}
+        />
+      </div>
 
       <UniversalButton variant="ВХОД" disabled={isSubmitting} />
     </form>

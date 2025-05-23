@@ -3,4 +3,17 @@
 
 @theme {
   --font-montserrat: 'Montserrat', sans-serif;
+  --color-davy-gray: #4c4c4c;
+  --color-cadet-gray: #9da2ab;
+  --color-flame: #d36135;
+  --color-feldgrau: #3f4b3b;
+  --color-mount-pink: #a188a6;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #f9fafb inset !important;
+  box-shadow: 0 0 0 1000px #f9fafb inset !important;
 }

@@ -40,44 +40,43 @@ export default function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
-      <FormField
-        id="userName"
-        label="Ваше имя:"
-        type="text"
-        placeholder="Ваше имя"
-        register={register('userName')}
-        error={errors.userName}
-      />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+      <div className="mb-6">
+        <FormField
+          id="userName"
+          label="Ваше имя:"
+          type="text"
+          placeholder="Ваше имя"
+          register={register('userName')}
+          error={errors.userName}
+        />
+        <FormField
+          id="email"
+          label="Email:"
+          type="text"
+          placeholder="Email"
+          register={register('email')}
+          error={errors.email}
+        />
+        <FormField
+          id="password"
+          label="Пароль:"
+          type="password"
+          placeholder="Пароль"
+          register={register('password')}
+          error={errors.password}
+        />
+        <FormField
+          id="confirmPassword"
+          label="Подтвердите пароль:"
+          type="password"
+          placeholder="Подтвердите пароль"
+          register={register('confirmPassword')}
+          error={errors.confirmPassword}
+        />
+      </div>
 
-      <FormField
-        id="email"
-        label="Email:"
-        type="text"
-        placeholder="Email"
-        register={register('email')}
-        error={errors.email}
-      />
-
-      <FormField
-        id="password"
-        label="Пароль:"
-        type="password"
-        placeholder="Пароль"
-        register={register('password')}
-        error={errors.password}
-      />
-
-      <FormField
-        id="confirmPassword"
-        label="Подтвердите пароль:"
-        type="password"
-        placeholder="Подтвердите пароль"
-        register={register('confirmPassword')}
-        error={errors.confirmPassword}
-      />
-
-      <UniversalButton variant="Завершить" disabled={isSubmitting} />
+      <UniversalButton variant="ЗАВЕРШИТЬ" disabled={isSubmitting} />
     </form>
   )
 }
