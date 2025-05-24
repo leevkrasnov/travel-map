@@ -1,4 +1,13 @@
-import type { FormFieldProps } from '@/types/authForm.types'
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
+
+interface FormFieldProps {
+  id: string
+  label: string
+  type: string
+  register: UseFormRegisterReturn
+  placeholder: string
+  error?: FieldError
+}
 
 export default function FormField({
   id,

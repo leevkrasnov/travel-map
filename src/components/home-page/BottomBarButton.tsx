@@ -1,17 +1,17 @@
-import { useBottomBarStore } from '@/store/bottombarStore'
+import { useBottomBarStore } from '@/store/useBottombarStore'
 import { motion, AnimatePresence } from 'framer-motion'
 
-interface NavButtonProps {
+interface BottomBarButtonProps {
   modalVariant: string
   textVariant: string
   onClick: () => void
 }
 
-export default function NavButton({
+export default function BottomBarButton({
   modalVariant,
   textVariant,
   onClick,
-}: NavButtonProps) {
+}: BottomBarButtonProps) {
   const activeModal = useBottomBarStore((state) => state.activeModal)
 
   const isActive = activeModal === modalVariant

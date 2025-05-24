@@ -8,8 +8,8 @@ import UniversalButton from '../common/UniversalButton'
 import { loginUser } from '@/utils/authService'
 import { handleFirebaseError } from '@/utils/errorHandler'
 
-import { LoginFormSchema } from '@/types/authForm.types'
-import type { LoginFormValues } from '@/types/authForm.types'
+import { LoginFormSchema } from '@/schemas/authFormSchema'
+import type { LoginFormData } from '@/schemas/authFormSchema'
 
 export default function LoginForm() {
   const {
@@ -18,14 +18,14 @@ export default function LoginForm() {
     reset,
     formState: { errors, isSubmitting },
     setError,
-  } = useForm<LoginFormValues>({
+  } = useForm<LoginFormData>({
     mode: 'onChange',
     resolver: zodResolver(LoginFormSchema),
   })
 
   const navigate = useNavigate()
 
-  const onSubmit = async (data: LoginFormValues) => {
+  const onSubmit = async (data: LoginFormData) => {
     try {
       await loginUser(data.email, data.password)
       navigate('/home')

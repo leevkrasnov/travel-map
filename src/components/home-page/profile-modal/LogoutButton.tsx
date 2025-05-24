@@ -1,8 +1,9 @@
-import { logoutUser } from '@/utils/authService'
 import { useNavigate } from 'react-router'
 import { LoaderCircle } from 'lucide-react'
 import { useState } from 'react'
-import { useBottomBarStore } from '@/store/bottombarStore'
+
+import { logoutUser } from '@/utils/authService'
+import { useBottomBarStore } from '@/store/useBottombarStore'
 
 export default function LogoutButton() {
   const navigate = useNavigate()
@@ -14,7 +15,6 @@ export default function LogoutButton() {
       setIsLogout(true)
       reset()
       await logoutUser()
-      // startModalChange(null)
       navigate('/')
     } finally {
       setIsLogout(false)

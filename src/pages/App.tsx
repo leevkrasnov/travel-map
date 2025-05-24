@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router'
-import AuthPage from './auth/LoginPage'
-import RegisterPage from './auth/RegisterPage'
-import HomePage from './home/HomePage'
+import AuthPage from './LoginPage'
+import RegisterPage from './RegisterPage'
+import HomePage from './HomePage'
 
 import RequireAuth from '@/components/auth-page/RequireAuth'
 import RequireAnon from '@/components/auth-page/RequireAnon'

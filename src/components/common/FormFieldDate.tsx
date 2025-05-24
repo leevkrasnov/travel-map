@@ -1,5 +1,14 @@
-import type { FormFieldProps } from '@/types/authForm.types'
 import { InputMask } from '@react-input/mask'
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
+
+interface FormFieldDateProps {
+  id: string
+  label: string
+  type: string
+  register: UseFormRegisterReturn
+  placeholder: string
+  error?: FieldError
+}
 
 export default function FormFieldDate({
   id,
@@ -8,7 +17,7 @@ export default function FormFieldDate({
   register,
   placeholder,
   error,
-}: FormFieldProps) {
+}: FormFieldDateProps) {
   return (
     <div className="relative">
       <label htmlFor={id} className="sr-only">

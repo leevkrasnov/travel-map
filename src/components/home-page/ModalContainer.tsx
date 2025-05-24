@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react'
-import { useBottomBarStore } from '@/store/bottombarStore'
-import ProfileModal from '@/components/home-page/profile/ProfileModal'
-import TravelForm from '@/components/home-page/travel-form/TravelForm'
+import { useBottomBarStore } from '@/store/useBottombarStore'
+import ProfileModal from '@/components/home-page/profile-modal/ProfileModal'
+import TravelForm from '@/components/home-page/travel-form-modal/TravelFormLayout'
 
 export default function ModalContainer() {
   const variants = {
@@ -45,7 +45,6 @@ export default function ModalContainer() {
               if (definition === 'open') openAnimation()
             }}
           >
-            {/* {activeModal === 'home' && <HomeModal />} */}
             {activeModal === 'travelForm' && <TravelForm />}
             {/* {activeModal === 'travelList' && <TravelListModal />} */}
             {activeModal === 'profile' && <ProfileModal />}

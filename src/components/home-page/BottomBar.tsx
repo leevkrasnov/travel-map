@@ -1,5 +1,5 @@
-import { useBottomBarStore } from '@/store/bottombarStore'
-import NavButton from './NavButton'
+import { useBottomBarStore } from '@/store/useBottombarStore'
+import BottomBarButton from './BottomBarButton'
 
 export default function BottomBar() {
   const startModalChange = useBottomBarStore((state) => state.startModalChange)
@@ -8,21 +8,21 @@ export default function BottomBar() {
     <nav className="bg-white border-t border-t-gray-200">
       <ul className="flex h-20 text-gray-600 duration-500">
         <li className="flex-1">
-          <NavButton
+          <BottomBarButton
             modalVariant="travelList"
             textVariant="МЕСТА"
             onClick={() => startModalChange('travelList')}
           />
         </li>
         <li className="flex-1">
-          <NavButton
+          <BottomBarButton
             modalVariant="travelForm"
             textVariant="ДОБАВИТЬ"
             onClick={() => startModalChange('travelForm')}
           />
         </li>
         <li className="flex-1">
-          <NavButton
+          <BottomBarButton
             modalVariant="profile"
             textVariant="ПРОФИЛЬ"
             onClick={() => startModalChange('profile')}

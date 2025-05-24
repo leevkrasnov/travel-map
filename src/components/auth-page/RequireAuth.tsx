@@ -1,13 +1,18 @@
-import { useAuthStore } from '@/store/authStore'
+import { ReactNode } from 'react'
 import { Navigate, useLocation } from 'react-router'
+
+import { useAuthStore } from '@/store/useAuthStore'
 import LoadingSpinner from '../common/LoadingSpinner'
 
-import { RequireProps } from '@/types/requirePath.types'
+interface RequireAuthProps {
+  children: ReactNode
+  redirectTo?: string
+}
 
 export default function RequireAuth({
   children,
   redirectTo = '/',
-}: RequireProps) {
+}: RequireAuthProps) {
   const { isAuthenticated, isLoading } = useAuthStore()
   const location = useLocation()
 

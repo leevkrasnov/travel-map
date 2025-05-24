@@ -1,5 +1,16 @@
 import { create } from 'zustand'
-import type { BottomBarStoreState } from '@/types/bottomBarStore.types'
+
+type ActiveModalState = 'home' | 'travelList' | 'travelForm' | 'profile' | null
+
+interface BottomBarStoreState {
+  activeModal: ActiveModalState
+  animationPhase: 'idle' | 'closing' | 'opening'
+  nextModal: ActiveModalState
+  startModalChange: (modal: ActiveModalState) => void
+  closeAnimation: () => void
+  openAnimation: () => void
+  reset: () => void
+}
 
 export const useBottomBarStore = create<BottomBarStoreState>((set) => ({
   activeModal: null,

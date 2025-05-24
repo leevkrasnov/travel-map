@@ -38,4 +38,4 @@ export const TravelFormSchema = z
     }
   )
 
-export type TravelFormValues = z.infer<typeof TravelFormSchema>
+export type TravelFormData = z.infer<typeof TravelFormSchema>

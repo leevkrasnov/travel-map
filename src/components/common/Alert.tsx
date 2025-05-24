@@ -1,5 +1,6 @@
-import { useAlertStore } from '@/store/useAlertStore'
 import { AnimatePresence, motion } from 'framer-motion'
+
+import { useAlertStore } from '@/store/useAlertStore'
 import { useUserName } from '@/hooks/useUserName'
 
 export default function Alert() {

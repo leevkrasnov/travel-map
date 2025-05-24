@@ -1,11 +1,11 @@
 import { FirebaseError } from 'firebase/app'
 
 import type { UseFormSetError } from 'react-hook-form'
-import type { LoginFormValues } from '@/types/authForm.types'
+import type { LoginFormData } from '@/schemas/authFormSchema'
 
 export const handleFirebaseError = (
   error: FirebaseError,
-  setError: UseFormSetError<LoginFormValues>
+  setError: UseFormSetError<LoginFormData>
 ) => {
   switch (error.code) {
     case 'auth/email-already-in-use':

@@ -8,9 +8,9 @@ import UniversalButton from '../common/UniversalButton'
 import { registerUser } from '@/utils/authService'
 import { handleFirebaseError } from '@/utils/errorHandler'
 
-import { RegisterFormSchema } from '@/types/authForm.types'
-import { RegisterPayload } from '@/types/authForm.types'
-import { RegisterFormData } from '@/types/authForm.types'
+import { RegisterFormSchema } from '@/schemas/authFormSchema'
+import type { RegisterPayload } from '@/schemas/authFormSchema'
+import type { RegisterFormData } from '@/schemas/authFormSchema'
 
 export default function RegisterForm() {
   const {

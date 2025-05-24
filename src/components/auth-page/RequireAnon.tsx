@@ -1,13 +1,18 @@
-import { useAuthStore } from '@/store/authStore'
+import { ReactNode } from 'react'
 import { Navigate } from 'react-router'
+
+import { useAuthStore } from '@/store/useAuthStore'
 import LoadingSpinner from '../common/LoadingSpinner'
 
-import { RequireProps } from '@/types/requirePath.types'
+interface RequireAnonProps {
+  children: ReactNode
+  redirectTo?: string
+}
 
 export default function RequireAnon({
   children,
   redirectTo = '/home',
-}: RequireProps) {
+}: RequireAnonProps) {
   const { isAuthenticated, isLoading } = useAuthStore()
 
   if (isLoading) {

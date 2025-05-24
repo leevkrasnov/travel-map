@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+
 import LoginForm from '@/components/auth-page/LoginForm'
 
 export default function LoginPage() {

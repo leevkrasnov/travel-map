@@ -1,12 +1,12 @@
-import BottomTabBar from '@/components/home-page/home/BottomBar'
-import YandexMap from '@/components/home-page/home/YandexMap'
-import ModalContainer from '@/components/home-page/home/ModalContainer'
+import BottomTabBar from '@/components/home-page/BottomBar'
+import YandexMapLayout from '@/components/home-page/yandex-map/YandexMapLayout'
+import ModalContainer from '@/components/home-page/ModalContainer'
 
 export default function HomePage() {
   return (
     <div className="flex flex-col h-screen">
       <div className="flex-1 overflow-auto">
-        <YandexMap />
+        <YandexMapLayout />
       </div>
 
       <ModalContainer />

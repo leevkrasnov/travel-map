@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { ChevronLeft } from 'lucide-react'
+
 import RegisterForm from '@/components/auth-page/RegisterForm'
 
 export default function RegisterPage() {
