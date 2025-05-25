@@ -1,45 +1,45 @@
-import { Map, Placemark } from '@pbe/react-yandex-maps'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useRef } from 'react'
 
-import ZoomControls from './ZoomControls'
-import type { Travel } from '@/store/useTravelStore'
-
-interface YandexMapViewProps {
-  mapRef: React.MutableRefObject<ymaps.Map | null>
-  mapState: { center: number[]; zoom: number }
-  travels: Travel[]
-  onZoomIn: () => void
-  onZoomOut: () => void
+type YandexMapViewProps = {
+  center?: [number, number]
+  zoom?: number
 }
 
-export default function YandexMapView({
-  mapRef,
-  mapState,
-  travels,
-  onZoomIn,
-  onZoomOut,
-}: YandexMapViewProps) {
-  return (
-    <div className="relative h-full">
-      <Map
-        state={mapState}
-        width="100%"
-        height="100%"
-        instanceRef={(instance) => {
-          mapRef.current = instance
-        }}
-      >
-        {travels.map((travel) => (
-          <Placemark
-            key={travel.id}
-            geometry={travel.coordinates}
-            properties={{
-              balloonContentHeader: `${travel.travelCity}, ${travel.travelCountry}`,
-              balloonContentBody: `С ${travel.travelDateStart} по ${travel.travelDateEnd}`,
-            }}
-          />
-        ))}
-      </Map>
-      <ZoomControls onZoomIn={onZoomIn} onZoomOut={onZoomOut} />
-    </div>
-  )
+export const YandexMapView: React.FC<YandexMapViewProps> = ({
+  center = [37.64, 55.76],
+  zoom = 10,
+}) => {
+  const mapContainer = useRef<HTMLDivElement>(null)
+  const mapRef = useRef<any>(null)
+
+  useEffect(() => {
+    const ymaps3 = (window as any).ymaps3
+    if (!ymaps3) return
+
+    const initMap = async () => {
+      try {
+        await ymaps3.ready
+        if (mapContainer.current && !mapRef.current) {
+          mapRef.current = new ymaps3.YMap(mapContainer.current, {
+            location: { center, zoom },
+          })
+          mapRef.current.addChild(new ymaps3.YMapDefaultSchemeLayer())
+        }
+      } catch (error) {
+        console.error('Ошибка при инициализации карты:', error)
+      }
+    }
+
+    initMap()
+
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.destroy()
+        mapRef.current = null
+      }
+    }
+  }, [center, zoom])
+
+  return <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
 }

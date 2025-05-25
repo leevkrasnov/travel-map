@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form'
-import { useYMaps } from '@pbe/react-yandex-maps'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import TravelFormView from './TravelFormView'
@@ -24,32 +23,22 @@ export default function TravelFormContainer() {
     resolver: zodResolver(TravelFormSchema),
   })
 
-  const yamaps = useYMaps(['geocode'])
-
   const onSubmit = async (data: TravelFormData) => {
     try {
-      if (!yamaps) {
-        console.error('Yandex Maps API not loaded')
-        return
-      }
-
-      const coordinates = await getCoordinates(
-        yamaps,
-        `${data.country}, ${data.city}`
-      )
+      const coordinates = await getCoordinates(`${data.country}, ${data.city}`)
 
       await addTravelToFirestore({
+        id: crypto.randomUUID(),
         travelCountry: data.country,
         travelCity: data.city,
         travelDateStart: data.dateStart,
         travelDateEnd: data.dateEnd,
         coordinates,
-        id: crypto.randomUUID(),
       })
 
       showAlert(
         'success',
-        `Ты успешно добавил поездку в ${data.city} (${data.country})`
+        `Ты успешно добавил поездку в ${data.city} (${data.country}с координатами: ${coordinates})`
       )
       reset()
     } catch (error) {

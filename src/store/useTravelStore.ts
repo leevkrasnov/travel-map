@@ -6,7 +6,7 @@ export type Travel = {
   travelCity: string
   travelDateStart: string
   travelDateEnd: string
-  coordinates: number[]
+  coordinates: [number, number]
 }
 
 interface TravelStoreState {
