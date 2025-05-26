@@ -1,10 +1,4 @@
-import {
-  doc,
-  setDoc,
-  collection,
-  getDocs,
-  onSnapshot,
-} from 'firebase/firestore'
+import { doc, setDoc, collection, getDocs } from 'firebase/firestore'
 
 import { auth, db } from '../firebase'
 import { useTravelStore } from '@/store/useTravelStore'
@@ -45,24 +39,24 @@ export const getTravelsFromFirestore = async () => {
   }
 }
 
-export const getActualTravels = () => {
-  const currentUser = auth.currentUser?.uid
+// export const getActualTravels = () => {
+//   const currentUser = auth.currentUser?.uid
 
-  if (currentUser) {
-    try {
-      const travelsRef = collection(db, 'users', currentUser, 'travels')
-      const unsub = onSnapshot(travelsRef, (snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          const travel = change.doc.data() as Travel
-          if (change.type === 'added') {
-            useTravelStore.getState().addTravelToStore(travel)
-          }
-        })
-      })
-      return unsub
-    } catch (error) {
-      console.error('Ошибка при загрузке поездок:', error)
-      throw error
-    }
-  }
-}
+//   if (currentUser) {
+//     try {
+//       const travelsRef = collection(db, 'users', currentUser, 'travels')
+//       const unsub = onSnapshot(travelsRef, (snapshot) => {
+//         snapshot.docChanges().forEach((change) => {
+//           const travel = change.doc.data() as Travel
+//           if (change.type === 'added') {
+//             useTravelStore.getState().addTravelToStore(travel)
+//           }
+//         })
+//       })
+//       return unsub
+//     } catch (error) {
+//       console.error('Ошибка при загрузке поездок:', error)
+//       throw error
+//     }
+//   }
+// }

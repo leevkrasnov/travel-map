@@ -14,9 +14,13 @@ export async function getCoordinates(
     const geoObject =
       data.response.GeoObjectCollection.featureMember[0]?.GeoObject
 
+    if (!geoObject || !geoObject.Point?.pos) {
+      throw new Error('Координаты не найдены')
+    }
+
     const pos = geoObject.Point.pos
     const [lon, lat] = pos.split(' ').map(Number)
-    return [lat, lon]
+    return [lon, lat]
   } catch (error) {
     console.error('Ошибка при получении координат:', error)
     throw error
