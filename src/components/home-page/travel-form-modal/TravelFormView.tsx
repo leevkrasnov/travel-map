@@ -42,6 +42,7 @@ export default function TravelFormView({
               placeholder="Страна"
               register={register('country')}
               error={errors.country}
+              capitalize
             />
             <FormField
               id="city"
@@ -50,6 +51,7 @@ export default function TravelFormView({
               placeholder="Город"
               register={register('city')}
               error={errors.city}
+              capitalize
             />
           </div>
 

@@ -1,3 +1,4 @@
+import { firstLetterUp } from '@/utils/edit'
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 
 interface FormFieldProps {
@@ -7,6 +8,7 @@ interface FormFieldProps {
   register: UseFormRegisterReturn
   placeholder: string
   error?: FieldError
+  capitalize?: boolean
 }
 
 export default function FormField({
@@ -16,6 +18,7 @@ export default function FormField({
   register,
   placeholder,
   error,
+  capitalize,
 }: FormFieldProps) {
   return (
     <div className="relative mb-4">
@@ -25,6 +28,10 @@ export default function FormField({
       <input
         id={id}
         {...register}
+        onBlur={(e) => {
+          const v = e.currentTarget.value
+          if (v && capitalize) e.currentTarget.value = firstLetterUp(v)
+        }}
         type={type}
         placeholder={placeholder}
         className={`border-2 bg-gray-50 ${

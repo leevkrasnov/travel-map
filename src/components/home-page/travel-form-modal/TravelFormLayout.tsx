@@ -11,8 +11,9 @@ import {
   type TravelFormData,
 } from '@/schemas/travelFormSchema'
 
-export default function TravelFormContainer() {
+export default function TravelFormLayout() {
   const showAlert = useAlertStore((state) => state.showAlert)
+
   const {
     register,
     handleSubmit,
@@ -38,11 +39,12 @@ export default function TravelFormContainer() {
 
       showAlert(
         'success',
-        `Ты успешно добавил поездку в ${data.city} (${data.country}с координатами: ${coordinates})`
+        `ты успешно добавил поездку в ${data.city} (${data.country}с координатами: ${coordinates})`
       )
       reset()
     } catch (error) {
       console.error('Ошибка при добавлении поездки:', error)
+      showAlert('error', 'ВНИМАНИЕ! Произошла ошибка, попробуй еще раз')
     }
   }
 

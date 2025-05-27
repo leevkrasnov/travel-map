@@ -49,6 +49,7 @@ export default function RegisterForm() {
           placeholder="Ваше имя"
           register={register('userName')}
           error={errors.userName}
+          capitalize
         />
         <FormField
           id="email"
