@@ -10,8 +10,13 @@ import { handleFirebaseError } from '@/utils/errorHandler'
 
 import { LoginFormSchema } from '@/schemas/authFormSchema'
 import type { LoginFormData } from '@/schemas/authFormSchema'
+import { useAlertStore } from '@/store/useAlertStore'
 
 export default function LoginForm() {
+  const navigate = useNavigate()
+
+  const showAlert = useAlertStore((state) => state.showAlert)
+
   const {
     register,
     handleSubmit,
@@ -23,15 +28,21 @@ export default function LoginForm() {
     resolver: zodResolver(LoginFormSchema),
   })
 
-  const navigate = useNavigate()
-
   const onSubmit = async (data: LoginFormData) => {
     try {
-      await loginUser(data.email, data.password)
+      const user = await loginUser(data.email, data.password)
       navigate('/home')
+
+      setTimeout(() => {
+        showAlert('success', `${user?.displayName?.trim()}, с возвращением!`)
+      }, 1000)
 
       reset()
     } catch (error) {
+      showAlert(
+        'error',
+        'Произошла ошибка на сервере. Пожалуйста, повтори операцию'
+      )
       if (error instanceof FirebaseError) {
         handleFirebaseError(error, setError)
       }

@@ -73,13 +73,15 @@ export default function YandexMap() {
         <YMapDefaultFeaturesLayer />
 
         {travels.length !== 0 &&
-          travels.map((travel) => (
-            <YMapMarker key={travel.id} coordinates={travel.coordinates}>
-              <div className="w-30">
-                <img src={mapPin} height={48} width={48} alt="map pin" />
-              </div>
-            </YMapMarker>
-          ))}
+          travels
+            .filter((travel) => travel.coordinates != null)
+            .map((travel) => (
+              <YMapMarker key={travel.id} coordinates={travel.coordinates}>
+                <div className="w-30">
+                  <img src={mapPin} height={48} width={48} alt="map pin" />
+                </div>
+              </YMapMarker>
+            ))}
       </YMap>
     </div>
   )

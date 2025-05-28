@@ -1,6 +1,6 @@
 export async function getCoordinates(
   address: string
-): Promise<[number, number]> {
+): Promise<[number, number] | null> {
   const apiKey = import.meta.env.VITE_YANDEX_MAPS_API_KEY
 
   const url = `https://geocode-maps.yandex.ru/1.x/?apikey=${apiKey}&format=json&geocode=${encodeURIComponent(
@@ -13,9 +13,11 @@ export async function getCoordinates(
     const data = await response.json()
     const geoObject =
       data.response.GeoObjectCollection.featureMember[0]?.GeoObject
+    const precision =
+      geoObject.metaDataProperty.GeocoderMetaData.precision || ''
 
-    if (!geoObject || !geoObject.Point?.pos) {
-      throw new Error('Координаты не найдены')
+    if (precision !== 'exact' || !geoObject.Point?.pos) {
+      return null
     }
 
     const pos = geoObject.Point.pos

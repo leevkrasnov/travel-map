@@ -10,8 +10,11 @@ import {
   TravelFormSchema,
   type TravelFormData,
 } from '@/schemas/travelFormSchema'
+import { useUserName } from '@/hooks/useUserName'
 
 export default function TravelFormLayout() {
+  const userName = useUserName()
+
   const showAlert = useAlertStore((state) => state.showAlert)
 
   const {
@@ -26,7 +29,7 @@ export default function TravelFormLayout() {
 
   const onSubmit = async (data: TravelFormData) => {
     try {
-      const coordinates = await getCoordinates(`${data.country}, ${data.city}`)
+      const coords = await getCoordinates(`${data.country}, ${data.city}`)
 
       await addTravelToFirestore({
         id: crypto.randomUUID(),
@@ -34,17 +37,28 @@ export default function TravelFormLayout() {
         travelCity: data.city,
         travelDateStart: data.dateStart,
         travelDateEnd: data.dateEnd,
-        coordinates,
+        coordinates: coords,
       })
-
-      showAlert(
-        'success',
-        `ты успешно добавил поездку в ${data.city} (${data.country}с координатами: ${coordinates})`
-      )
       reset()
+
+      if (!coords) {
+        showAlert(
+          'info',
+          `Я добавил запись, но не смог определить координаты для: ${data.city}, ${data.country}`,
+          7000
+        )
+      } else {
+        showAlert(
+          'success',
+          `${userName}, ты успешно добавил поездку в ${data.city} (${data.country})`
+        )
+      }
     } catch (error) {
       console.error('Ошибка при добавлении поездки:', error)
-      showAlert('error', 'ВНИМАНИЕ! Произошла ошибка, попробуй еще раз')
+      showAlert(
+        'error',
+        'Произошла ошибка на сервере. Пожалуйста, повтори операцию'
+      )
     }
   }
 
