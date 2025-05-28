@@ -1,7 +1,7 @@
 import { InputMask } from '@react-input/mask'
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 
-interface FormFieldDateProps {
+interface FormDateProps {
   id: string
   label: string
   type: string
@@ -10,14 +10,14 @@ interface FormFieldDateProps {
   error?: FieldError
 }
 
-export default function FormFieldDate({
+export default function FormDate({
   id,
   label,
   type,
   register,
   placeholder,
   error,
-}: FormFieldDateProps) {
+}: FormDateProps) {
   return (
     <div className="relative">
       <label htmlFor={id} className="sr-only">
@@ -34,7 +34,7 @@ export default function FormFieldDate({
           error
             ? 'border-flame/50 focus:border-flame'
             : 'border-cadet-gray focus:border-feldgrau'
-        } rounded-sm p-4 text-lg w-full duration-200 outline-none focus:outline-none`}
+        } rounded-sm px-5 h-[45px] md:h-[55px] text-lg md:shadow-sm w-full duration-200 outline-none focus:outline-none`}
         aria-describedby={error ? `${id}-error` : undefined}
       />
       {error && (

@@ -11,7 +11,7 @@ export const TravelFormSchema = z
         message: 'Формат: дд.мм.гггг',
       })
       .refine((date) => parseDate(date) !== null, {
-        message: 'Несуществующая дата',
+        message: 'Неверный порядок',
       }),
     dateEnd: z
       .string()
@@ -19,7 +19,7 @@ export const TravelFormSchema = z
         message: 'Формат: дд.мм.гггг',
       })
       .refine((date) => parseDate(date) !== null, {
-        message: 'Некорректный формат',
+        message: 'Неверный порядок',
       }),
   })
   .refine(

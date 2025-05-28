@@ -5,16 +5,16 @@ import LoginForm from '@/components/auth-page/LoginForm'
 export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="text-davy-gray relative flex flex-col h-screen w-screen md:w-[600px] md:h-[80%] px-10 bg-gray-50 rounded-xl shadow-md">
-        <h1 className="text-5xl mr-10 font-semibold mt-26">
+      <div className="text-davy-gray relative flex flex-col h-screen w-screen lg:w-[600px] lg:h-[800px] px-8 lg:px-10 bg-gray-50 rounded-xl shadow-lg">
+        <h1 className="lg:text-5xl text-3xl font-semibold lg:mt-26 mt-36">
           <p className="mb-2">ДОБРО</p>
           <p>ПОЖАЛОВАТЬ!</p>
         </h1>
-        <h2 className="mt-14 mb-3 text-lg px-10 text-gray-600">
-          Войти в аккаунт
+        <h2 className="lg:mt-14 mt-20 mb-3 lg:text-lg px-8 lg:px-10 text-mount-pink">
+          Войти в существующий аккаунт
         </h2>
 
-        <section className="flex flex-col px-10">
+        <section className="flex flex-col px-8 lg:px-10">
           <LoginForm />
         </section>
 

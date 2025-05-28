@@ -1,9 +1,10 @@
 import FormField from '@/components/common/FormField'
-import FormFieldDate from '@/components/common/FormFieldDate'
+import FormDate from '@/components/home-page/travel-form-modal/FormDate'
 import UniversalButton from '@/components/common/UniversalButton'
 
 import type { FieldErrors, UseFormRegister } from 'react-hook-form'
 import type { TravelFormData } from '@/schemas/travelFormSchema'
+import AnimalsView from './AnimalsView'
 
 interface TravelFormProps {
   register: UseFormRegister<TravelFormData>
@@ -19,21 +20,17 @@ export default function TravelFormView({
   onSubmit,
 }: TravelFormProps) {
   return (
-    <div className="h-full bg-gray-50 rounded-t-2xl px-8 shadow-lg flex flex-col">
-      <img
-        src="/src/assets/mountains.svg"
-        alt="image-mountains"
-        className="pointer-events-none select-none absolute opacity-5 bottom-40 right-6 w-auto h-[60%] object-contain z-0"
-      />
+    <div className="h-full bg-gray-50 rounded-t-2xl shadow-lg flex flex-col">
+      <AnimalsView />
       <div className="z-10 mx-10 md:mx-60">
-        <h1 className="text-5xl text-davy-gray font-semibold mt-20">
+        <h1 className="text-3xl lg:text-5xl text-davy-gray font-semibold mt-14 lg:mt-20">
           <p>ДОБАВИТЬ</p>
-          <p className="mt-4">ПУТЕШЕСТВИЕ</p>
+          <p className="lg:mt-4">ПУТЕШЕСТВИЕ</p>
         </h1>
-        <p className="text-xl text-mount-pink font-normal mt-20 mx-32">
+        <p className="lg:text-xl text-mount-pink font-normal mt-20 lg:mx-32">
           Заполни форму — это быстро
         </p>
-        <form onSubmit={onSubmit} className="flex flex-col px-32 gap-y-4 mt-4">
+        <form onSubmit={onSubmit} className="flex flex-col lg:px-32 mt-2">
           <div>
             <FormField
               id="country"
@@ -54,31 +51,35 @@ export default function TravelFormView({
               capitalize
             />
           </div>
-
-          <div className="flex flex-row gap-x-8">
+          <p className="lg:text-xl text-mount-pink font-normal mt-2">
+            Можешь не использовать разделители
+          </p>
+          <div className="mt-2 flex flex-row gap-x-6">
             <div className="flex-1">
-              <FormFieldDate
+              <FormDate
                 id="dateStart"
                 label="Дата начала поездки:"
                 type="text"
-                placeholder="Дата начала"
+                placeholder="Начало"
                 register={register('dateStart')}
                 error={errors.dateStart}
               />
             </div>
             <div className="flex-1">
-              <FormFieldDate
+              <FormDate
                 id="dateEnd"
                 label="Дата окончания поездки:"
                 type="text"
-                placeholder="Дата окончания"
+                placeholder="Конец"
                 register={register('dateEnd')}
                 error={errors.dateEnd}
               />
             </div>
           </div>
 
-          <UniversalButton variant="ГОТОВО" disabled={isSubmitting} />
+          <div className="mt-8 lg:mt-5">
+            <UniversalButton variant="ГОТОВО" disabled={isSubmitting} />
+          </div>
         </form>
       </div>
     </div>

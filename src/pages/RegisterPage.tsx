@@ -6,22 +6,24 @@ import RegisterForm from '@/components/auth-page/RegisterForm'
 export default function RegisterPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="text-davy-gray relative flex flex-col h-screen w-screen md:w-[600px] md:h-[80%] px-10 bg-gray-50 rounded-xl shadow-md">
+      <div className="text-davy-gray relative flex flex-col h-screen w-screen lg:w-[600px] lg:h-[900px] bg-gray-50 rounded-xl shadow-lg">
         <section>
           <Link
             to="/Auth"
-            className="flex items-center text-xl absolute left-4 top-12 gap-1 text-gray-600 hover:text-flame duration-400 hover:scale-105"
+            className="flex items-center text-xl absolute left-4 top-20 lg:top-12 gap-1 text-gray-600 hover:text-flame duration-400 hover:scale-105"
           >
             <ChevronLeft size={40} strokeWidth={1} />
             Назад
           </Link>
-          <h1 className="text-5xl font-semibold mt-28 mb-12">РЕГИСТРАЦИЯ</h1>
-          <h2 className="mt-14 mb-3 text-lg px-10 text-gray-600">
+          <h1 className="text-3xl lg:text-5xl font-semibold lg:mt-32 mt-42 mb-8 lg:mb-18 px-8 lg:px-10">
+            РЕГИСТРАЦИЯ
+          </h1>
+          {/* <h2 className="mt-14 mb-3 text-lg px-10 text-gray-600">
             Пожалуйста, заполните все поля
-          </h2>
+          </h2> */}
         </section>
 
-        <section className="px-10 pb-20">
+        <section className="pb-20 px-8 lg:px-18">
           <RegisterForm />
         </section>
       </div>

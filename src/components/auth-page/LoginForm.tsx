@@ -11,6 +11,7 @@ import { handleFirebaseError } from '@/utils/errorHandler'
 import { LoginFormSchema } from '@/schemas/authFormSchema'
 import type { LoginFormData } from '@/schemas/authFormSchema'
 import { useAlertStore } from '@/store/useAlertStore'
+import FormPassword from './FormPassword'
 
 export default function LoginForm() {
   const navigate = useNavigate()
@@ -60,10 +61,9 @@ export default function LoginForm() {
           register={register('email')}
           error={errors.email}
         />
-        <FormField
+        <FormPassword
           id="password"
           label="Пароль:"
-          type="password"
           placeholder="Пароль"
           register={register('password')}
           error={errors.password}

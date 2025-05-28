@@ -1,25 +1,27 @@
 import { firstLetterUp } from '@/utils/edit'
+import { Eye, EyeClosed } from 'lucide-react'
+import { useState } from 'react'
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 
 interface FormFieldProps {
   id: string
   label: string
-  type: string
   register: UseFormRegisterReturn
   placeholder: string
   error?: FieldError
   capitalize?: boolean
 }
 
-export default function FormField({
+export default function FormPassword({
   id,
   label,
-  type,
   register,
   placeholder,
   error,
   capitalize,
 }: FormFieldProps) {
+  const [showPass, setShowPass] = useState(false)
+
   return (
     <div className="relative mb-4">
       <label htmlFor={id} className="sr-only">
@@ -32,7 +34,7 @@ export default function FormField({
           const value = e.currentTarget.value
           if (value && capitalize) e.currentTarget.value = firstLetterUp(value)
         }}
-        type={type}
+        type={showPass ? 'text' : 'password'}
         placeholder={placeholder}
         className={`border-2 bg-gray-50 ${
           error
@@ -41,6 +43,18 @@ export default function FormField({
         } rounded-sm px-5 h-[45px] md:h-[55px] text-lg md:shadow-sm w-full duration-200 outline-none focus:outline-none`}
         aria-describedby={error ? `${id}-error` : undefined}
       />
+      <button
+        type="button"
+        onClick={() => setShowPass((prev) => !prev)}
+        aria-label={showPass ? 'Скрыть пароль' : 'Показать пароль'}
+        className="absolute cursor-pointer right-4 top-1/2 -translate-y-1/2"
+      >
+        {showPass ? (
+          <EyeClosed size={24} color="#9da2ab" strokeWidth={1.5} />
+        ) : (
+          <Eye size={24} color="#9da2ab" strokeWidth={1.5} />
+        )}
+      </button>
       {error && (
         <p
           id={`${id}-error`}

@@ -41,16 +41,22 @@ export default function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-      <div className="mb-6">
+      <div className="mb-6 shadow-sm rounded-md p-5 md:shadow-none md:mb-0 md:p-0">
+        <p className="md:text-lg text-mount-pink mb-3">
+          Как я могу к тебе обращаться?
+        </p>
         <FormField
           id="userName"
-          label="Ваше имя:"
+          label="Имя:"
           type="text"
-          placeholder="Ваше имя"
+          placeholder="Имя / Псевдоним"
           register={register('userName')}
           error={errors.userName}
           capitalize
         />
+        <p className="md:text-lg text-mount-pink mb-3 my-8">
+          Укажи свою почту — обещаю не спамить
+        </p>
         <FormField
           id="email"
           label="Email:"
@@ -59,6 +65,9 @@ export default function RegisterForm() {
           register={register('email')}
           error={errors.email}
         />
+        <p className="md:text-lg text-mount-pink mb-3 my-8">
+          Правило только одно: минимум 6 символов
+        </p>
         <FormField
           id="password"
           label="Пароль:"
@@ -69,9 +78,9 @@ export default function RegisterForm() {
         />
         <FormField
           id="confirmPassword"
-          label="Подтвердите пароль:"
+          label="Подтверди пароль:"
           type="password"
-          placeholder="Подтвердите пароль"
+          placeholder="Подтверди пароль"
           register={register('confirmPassword')}
           error={errors.confirmPassword}
         />
