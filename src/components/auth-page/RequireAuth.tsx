@@ -13,7 +13,9 @@ export default function RequireAuth({
   children,
   redirectTo = '/',
 }: RequireAuthProps) {
-  const { isAuthenticated, isLoading } = useAuthStore()
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const isLoading = useAuthStore((state) => state.isLoading)
+
   const location = useLocation()
 
   if (isLoading) {

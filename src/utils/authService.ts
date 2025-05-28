@@ -7,6 +7,7 @@ import {
 
 import { auth } from '../firebase'
 import { useAuthStore } from '@/store/useAuthStore'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 export const registerUser = async function (
   userName: string,
@@ -14,6 +15,7 @@ export const registerUser = async function (
   password: string
 ) {
   try {
+    useLoadingStore.getState().setIsLoading(true)
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -33,11 +35,14 @@ export const registerUser = async function (
   } catch (error) {
     console.error('Ошибка регистрации пользователя:', error)
     throw error
+  } finally {
+    useLoadingStore.getState().setIsLoading(false)
   }
 }
 
 export const loginUser = async function (email: string, password: string) {
   try {
+    useLoadingStore.getState().setIsLoading(true)
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email,
@@ -46,19 +51,26 @@ export const loginUser = async function (email: string, password: string) {
     const user = userCredential.user
 
     useAuthStore.getState().setUser(user)
+
     return user
   } catch (error) {
     console.error('Ошибка авторизации:', error)
     throw error
+  } finally {
+    useLoadingStore.getState().setIsLoading(false)
   }
 }
 
 export const logoutUser = async function () {
   try {
-    signOut(auth)
+    useLoadingStore.getState().setIsLoading(true)
+    await signOut(auth)
+
     useAuthStore.getState().setUser(null)
   } catch (error) {
     console.error('Не удалось выйти из учетной записи:', error)
     throw error
+  } finally {
+    useLoadingStore.getState().setIsLoading(false)
   }
 }

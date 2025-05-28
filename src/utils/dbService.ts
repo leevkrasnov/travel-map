@@ -4,12 +4,14 @@ import { auth, db } from '../firebase'
 import { useTravelStore } from '@/store/useTravelStore'
 
 import type { Travel } from '@/store/useTravelStore'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 export const addTravelToFirestore = async (travel: Travel) => {
   const currentUser = auth.currentUser?.uid
 
   if (currentUser) {
     try {
+      useLoadingStore.getState().setIsLoading(true)
       const travelId = crypto.randomUUID()
       const travelRef = doc(db, 'users', currentUser, 'travels', travelId)
 
@@ -17,6 +19,8 @@ export const addTravelToFirestore = async (travel: Travel) => {
     } catch (error) {
       console.error('Ошибка добавления путешествия', error)
       throw error
+    } finally {
+      useLoadingStore.getState().setIsLoading(false)
     }
   }
 }
@@ -26,6 +30,7 @@ export const getTravelsFromFirestore = async () => {
 
   if (currentUser) {
     try {
+      useLoadingStore.getState().setIsLoading(true)
       const travelsRef = collection(db, 'users', currentUser, 'travels')
       const snapshot = await getDocs(travelsRef)
 
@@ -35,6 +40,8 @@ export const getTravelsFromFirestore = async () => {
     } catch (error) {
       console.error('Ошибка при загрузке поездок:', error)
       throw error
+    } finally {
+      useLoadingStore.getState().setIsLoading(false)
     }
   }
 }

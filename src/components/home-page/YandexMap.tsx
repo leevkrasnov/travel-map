@@ -1,19 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
+import mapPin from '@/assets/mapPin.svg'
 import { mapStyles } from '@/styles/mapStyles'
 import { useTravelStore } from '@/store/useTravelStore'
+import { useTravelsListener } from '@/hooks/useTravelsListener'
+import LoadingSpinner from '../common/LoadingSpinner'
 
 import { YMap, YMapLocationRequest } from '@yandex/ymaps3-types'
-import { useTravelsListener } from '@/hooks/useTravelsListener'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 export default function YandexMap() {
   useTravelsListener()
   const travels = useTravelStore((state) => state.travels)
-  console.log(travels)
+  const isLoading = useLoadingStore((state) => state.isLoading)
 
-  const [reactified, setReactified] = React.useState<{
+  const [reactified, setReactified] = useState<{
     YMap: any
     YMapDefaultSchemeLayer: any
     YMapMarker: any
@@ -58,7 +61,7 @@ export default function YandexMap() {
     zoom: 6,
   }
 
-  if (!reactified) return null
+  if (!reactified || isLoading) return <LoadingSpinner />
 
   const { YMap, YMapDefaultSchemeLayer, YMapMarker, YMapDefaultFeaturesLayer } =
     reactified
@@ -73,12 +76,7 @@ export default function YandexMap() {
           travels.map((travel) => (
             <YMapMarker key={travel.id} coordinates={travel.coordinates}>
               <div className="w-30">
-                <img
-                  src="src/assets/mapPin.svg"
-                  height={48}
-                  width={48}
-                  alt="map pin"
-                />
+                <img src={mapPin} height={48} width={48} alt="map pin" />
               </div>
             </YMapMarker>
           ))}
