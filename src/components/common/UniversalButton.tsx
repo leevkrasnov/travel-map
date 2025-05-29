@@ -13,7 +13,7 @@ export default function UniversalButton({
     <button
       type="submit"
       disabled={disabled}
-      className="flex items-center justify-center bg-gray-800 border-2 border-gray-800 cursor-pointer mt-10 text-white w-full h-[45px] md:h-[60px] rounded-full md:text-xl disabled:feldgrau hover:bg-feldgrau hover:border-feldgrau duration-500"
+      className="flex items-center justify-center bg-gray-800 border-2 border-gray-800 cursor-pointer mt-10 text-white w-full h-[45px] md:h-[60px] rounded-full md:text-xl disabled:bg-feldgrau hover:bg-feldgrau hover:border-feldgrau duration-500"
     >
       {disabled ? <LoaderCircle size={28} className="animate-spin" /> : variant}
     </button>

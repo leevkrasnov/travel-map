@@ -10,10 +10,10 @@ import {
   TravelFormSchema,
   type TravelFormData,
 } from '@/schemas/travelFormSchema'
-import { useUserName } from '@/hooks/useUserName'
+import { useUserInfo } from '@/hooks/useUserInfo'
 
 export default function TravelFormLayout() {
-  const userName = useUserName()
+  const { displayName } = useUserInfo()
 
   const showAlert = useAlertStore((state) => state.showAlert)
 
@@ -40,6 +40,7 @@ export default function TravelFormLayout() {
         coordinates: coords,
       })
       reset()
+      console.log(coords)
 
       if (!coords) {
         showAlert(
@@ -50,7 +51,7 @@ export default function TravelFormLayout() {
       } else {
         showAlert(
           'success',
-          `${userName}, ты успешно добавил поездку в ${data.city} (${data.country})`
+          `${displayName}, ты успешно добавил поездку в ${data.city} (${data.country})`
         )
       }
     } catch (error) {

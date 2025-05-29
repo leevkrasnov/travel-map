@@ -2,9 +2,9 @@ import { Check, LoaderCircle, PenLine, X } from 'lucide-react'
 import { AnimatePresence } from 'motion/react'
 
 import { useUserNameInput } from '@/hooks/useUserNameInput'
-import AnimatedButtonChangeName from './AnimatedButtonChangeName'
+import AnimatedButton from './AnimatedButton'
 
-export default function ChangeUserName() {
+export default function UserNameInput() {
   const {
     isDisabled,
     setIsDisabled,
@@ -14,13 +14,13 @@ export default function ChangeUserName() {
     handleClick,
     handleConfirm,
     isLoading,
-    userName,
+    displayName,
     eventKeyDown,
   } = useUserNameInput()
 
   return (
     <div className="flex flex-col">
-      <label className="text-mount-pink">ИМЯ</label>
+      <label className="text-mount-pink font-semibold">ИМЯ</label>
       <div className="mt-2 flex-row flex gap-x-4">
         <div className="relative flex-1">
           <input
@@ -29,8 +29,8 @@ export default function ChangeUserName() {
             disabled={isDisabled}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={eventKeyDown}
-            value={isDisabled ? userName : inputValue}
-            className="bg-gray-200 border-cadet-gray focus:border-feldgrau pr-12 rounded-xl px-5 h-[45px] md:h-[55px] text-lg md:shadow-sm w-full duration-200 outline-none focus:outline-none"
+            value={isDisabled ? displayName : inputValue}
+            className="bg-gray-100 border-2 border-cadet-gray focus:border-feldgrau pr-12 rounded-sm px-5 h-[50px] md:h-[60px] text-xl md:shadow-sm w-full duration-200 outline-none focus:outline-none"
           />
           <AnimatePresence mode="wait">
             {isDisabled ? (
@@ -43,7 +43,7 @@ export default function ChangeUserName() {
               </button>
             ) : (
               <div>
-                <AnimatedButtonChangeName
+                <AnimatedButton
                   label="Сохранить изменения"
                   onClick={handleConfirm}
                   styles="hover:text-mount-pink right-18 border-r border-gray-400 pr-4"
@@ -53,15 +53,15 @@ export default function ChangeUserName() {
                   ) : (
                     <Check />
                   )}
-                </AnimatedButtonChangeName>
+                </AnimatedButton>
 
-                <AnimatedButtonChangeName
+                <AnimatedButton
                   label="Отменить"
                   onClick={() => setIsDisabled(true)}
                   styles="hover:text-flame right-8"
                 >
                   <X />
-                </AnimatedButtonChangeName>
+                </AnimatedButton>
               </div>
             )}
           </AnimatePresence>

@@ -9,7 +9,7 @@ interface AnimatedButtonProps {
   disabled?: boolean
 }
 
-export default function AnimatedButtonChangeName({
+export default function AnimatedButton({
   label,
   styles,
   onClick,

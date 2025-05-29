@@ -5,7 +5,7 @@ export default function BottomBar() {
   const startModalChange = useBottomBarStore((state) => state.startModalChange)
 
   return (
-    <nav className="bg-white border-t border-t-gray-200">
+    <nav className="bg-gray-50 xl:px-32 2xl:px-60">
       <ul className="flex h-20 text-gray-600 duration-500">
         <li className="flex-1">
           <BottomBarButton

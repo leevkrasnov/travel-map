@@ -1,24 +1,39 @@
 import { useEffect, useRef, useState } from 'react'
+
 import { updateUserName } from '@/utils/authService'
-import { useUserName } from '@/hooks/useUserName'
+import { useUserInfo } from './useUserInfo'
 import { useLoadingStore } from '@/store/useLoadingStore'
+import { useAlertStore } from '@/store/useAlertStore'
 
 export function useUserNameInput() {
   const [isDisabled, setIsDisabled] = useState(true)
   const [inputValue, setInputValue] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
+
   const isLoading = useLoadingStore((state) => state.isLoading)
 
-  const userName = useUserName()
+  const { displayName } = useUserInfo()
+
+  const showAlert = useAlertStore((state) => state.showAlert)
 
   useEffect(() => {
-    setInputValue(userName ?? '')
-  }, [userName])
+    setInputValue(displayName ?? '')
+  }, [displayName])
 
   const handleConfirm = async () => {
-    if (inputValue.trim() !== '' && inputValue.trim() !== userName) {
+    if (inputValue.trim() !== '' && inputValue.trim() !== displayName) {
       try {
         await updateUserName(inputValue)
+
+        showAlert('info', `Запомнил: ты теперь ${inputValue}!`)
+      } catch (error) {
+        showAlert(
+          'error',
+          'Произошла ошибка на сервере. Пожалуйста, повтори операцию'
+        )
+        console.error('Не удалось обновить имя пользователя')
+
+        throw error
       } finally {
         setIsDisabled(true)
       }
@@ -38,7 +53,7 @@ export function useUserNameInput() {
     }
     if (event.key === 'Escape') {
       setIsDisabled(true)
-      setInputValue(userName ?? '')
+      setInputValue(displayName ?? '')
     }
   }
 
@@ -51,7 +66,7 @@ export function useUserNameInput() {
     handleClick,
     handleConfirm,
     isLoading,
-    userName,
+    displayName,
     eventKeyDown,
   }
 }

@@ -66,7 +66,12 @@ export default function YandexMap() {
 
   return (
     <div className="w-full h-full">
-      <YMap location={location} ref={(x: YMap) => (window.map = x)}>
+      <YMap
+        minZoom={5}
+        mode="vector"
+        location={location}
+        ref={(x: YMap) => (window.map = x)}
+      >
         <YMapDefaultSchemeLayer customization={mapStyles} />
         <YMapDefaultFeaturesLayer />
 
@@ -75,8 +80,10 @@ export default function YandexMap() {
             .filter((travel) => travel.coordinates != null)
             .map((travel) => (
               <YMapMarker key={travel.id} coordinates={travel.coordinates}>
-                <div className="w-30">
-                  <img src={mapPin} height={48} width={48} alt="map pin" />
+                <div className="w-10 relative">
+                  <div className="absolute top-[-42px] left-[-24px]">
+                    <img src={mapPin} height={48} width={48} alt="map pin" />
+                  </div>
                 </div>
               </YMapMarker>
             ))}

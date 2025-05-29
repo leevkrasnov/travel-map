@@ -13,14 +13,14 @@ export async function getCoordinates(
     const data = await response.json()
     const geoObject =
       data.response.GeoObjectCollection.featureMember[0]?.GeoObject
-    const precision =
-      geoObject.metaDataProperty.GeocoderMetaData.precision || ''
 
-    if (precision !== 'exact' || !geoObject.Point?.pos) {
+    const kind = geoObject?.metaDataProperty?.GeocoderMetaData?.kind || ''
+    const pos = geoObject?.Point?.pos
+
+    if (kind !== 'locality' || !pos) {
       return null
     }
 
-    const pos = geoObject.Point.pos
     const [lon, lat] = pos.split(' ').map(Number)
     return [lon, lat]
   } catch (error) {

@@ -31,7 +31,7 @@ export default function BottomBarButton({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -1 }}
             layoutId="activeBackground"
-            className="absolute inset-0 bg-gray-100 rounded-t-xs"
+            className="absolute inset-0 bg-cadet-gray/60 shadow-xl rounded-xl"
             transition={{ type: 'spring', stiffness: 500, damping: 40 }}
           />
         )}
