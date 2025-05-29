@@ -35,7 +35,7 @@ export default function LoginForm() {
       navigate('/home')
 
       setTimeout(() => {
-        showAlert('success', `${user?.displayName?.trim()}, с возвращением!`)
+        showAlert('info', `${user?.displayName?.trim()}, с возвращением!`)
       }, 1000)
 
       reset()
