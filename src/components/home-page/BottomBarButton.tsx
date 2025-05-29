@@ -20,7 +20,7 @@ export default function BottomBarButton({
     <button
       onClick={onClick}
       className={`relative cursor-pointer hover:text-black duration-300 w-full h-full ${
-        isActive ? 'text-black' : 'text-gray-500'
+        isActive ? 'text-davy-gray' : 'text-gray-400'
       }`}
     >
       <AnimatePresence>
@@ -31,13 +31,13 @@ export default function BottomBarButton({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -1 }}
             layoutId="activeBackground"
-            className="absolute inset-0 bg-gray-200"
+            className="absolute inset-0 bg-gray-100 rounded-t-xs"
             transition={{ type: 'spring', stiffness: 500, damping: 40 }}
           />
         )}
       </AnimatePresence>
       <div className="relative z-10 flex flex-col items-center justify-center">
-        <p className="text-xl font-semibold mt-2">{textVariant}</p>
+        <p className="text-lg lg:text-2xl font-semibold mt-2">{textVariant}</p>
       </div>
     </button>
   )

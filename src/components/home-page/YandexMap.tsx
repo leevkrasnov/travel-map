@@ -9,12 +9,10 @@ import { useTravelsListener } from '@/hooks/useTravelsListener'
 import LoadingSpinner from '../common/LoadingSpinner'
 
 import { YMap, YMapLocationRequest } from '@yandex/ymaps3-types'
-import { useLoadingStore } from '@/store/useLoadingStore'
 
 export default function YandexMap() {
   useTravelsListener()
   const travels = useTravelStore((state) => state.travels)
-  const isLoading = useLoadingStore((state) => state.isLoading)
 
   const [reactified, setReactified] = useState<{
     YMap: any
@@ -61,7 +59,7 @@ export default function YandexMap() {
     zoom: 6,
   }
 
-  if (!reactified || isLoading) return <LoadingSpinner />
+  if (!reactified) return <LoadingSpinner />
 
   const { YMap, YMapDefaultSchemeLayer, YMapMarker, YMapDefaultFeaturesLayer } =
     reactified

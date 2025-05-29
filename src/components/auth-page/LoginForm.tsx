@@ -7,11 +7,11 @@ import FormField from '@/components/common/FormField'
 import UniversalButton from '../common/UniversalButton'
 import { loginUser } from '@/utils/authService'
 import { handleFirebaseError } from '@/utils/errorHandler'
+import PasswordForm from './PasswordForm'
+import { useAlertStore } from '@/store/useAlertStore'
 
 import { LoginFormSchema } from '@/schemas/authFormSchema'
 import type { LoginFormData } from '@/schemas/authFormSchema'
-import { useAlertStore } from '@/store/useAlertStore'
-import FormPassword from './FormPassword'
 
 export default function LoginForm() {
   const navigate = useNavigate()
@@ -61,7 +61,7 @@ export default function LoginForm() {
           register={register('email')}
           error={errors.email}
         />
-        <FormPassword
+        <PasswordForm
           id="password"
           label="Пароль:"
           placeholder="Пароль"

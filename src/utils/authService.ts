@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  deleteUser,
   updateProfile,
 } from 'firebase/auth'
 
@@ -69,6 +70,37 @@ export const logoutUser = async function () {
     useAuthStore.getState().setUser(null)
   } catch (error) {
     console.error('Не удалось выйти из учетной записи:', error)
+    throw error
+  } finally {
+    useLoadingStore.getState().setIsLoading(false)
+  }
+}
+
+export const updateUserName = async (newUserName: string) => {
+  try {
+    useLoadingStore.getState().setIsLoading(true)
+
+    await updateProfile(auth.currentUser!, { displayName: newUserName })
+
+    await auth.currentUser?.reload()
+
+    const updatedName = auth.currentUser?.displayName ?? null
+
+    useAuthStore.getState().setDisplayName(updatedName)
+  } catch (error) {
+    console.error('Не удалось обновить имя пользователя', error)
+    throw error
+  } finally {
+    useLoadingStore.getState().setIsLoading(false)
+  }
+}
+
+export const deleteCurrentUser = async () => {
+  try {
+    useLoadingStore.getState().setIsLoading(true)
+    deleteUser(auth.currentUser!)
+  } catch (error) {
+    console.error('Не удалось удалить пользователя', error)
     throw error
   } finally {
     useLoadingStore.getState().setIsLoading(false)

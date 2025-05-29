@@ -1,7 +1,8 @@
-import { firstLetterUp } from '@/utils/edit'
 import { Eye, EyeClosed } from 'lucide-react'
 import { useState } from 'react'
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
+
+import { firstLetterUp } from '@/utils/edit'
 
 interface FormFieldProps {
   id: string
@@ -12,7 +13,7 @@ interface FormFieldProps {
   capitalize?: boolean
 }
 
-export default function FormPassword({
+export default function PasswordForm({
   id,
   label,
   register,
