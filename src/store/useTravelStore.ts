@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 export type Travel = {
-  id: string
+  id?: string
   travelCountry: string
   travelCity: string
   travelDateStart: string

@@ -12,7 +12,11 @@ export const useTravelsListener = () => {
     const travelsRef = collection(db, 'users', currentUser, 'travels')
 
     const unsub = onSnapshot(travelsRef, (snapshot) => {
-      const travels: Travel[] = snapshot.docs.map((doc) => doc.data() as Travel)
+      const travels: Travel[] = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Travel[]
+
       useTravelStore.getState().setTravels(travels)
     })
 

@@ -1,7 +1,9 @@
 import { motion, AnimatePresence } from 'motion/react'
+
 import { useBottomBarStore } from '@/store/useBottombarStore'
 import ProfileView from '@/components/home-page/profile-modal/ProfileView'
 import TravelFormLayout from '@/components/home-page/travel-form-modal/TravelFormLayout'
+import TravelListView from './travel-list-modal/TravelListView'
 
 export default function ModalContainer() {
   const variants = {
@@ -26,7 +28,7 @@ export default function ModalContainer() {
             onClick={() => startModalChange(null)}
           />
           <motion.div
-            className="relative h-[80%] mb-16 md:mb-20 w-full"
+            className="relative h-[80%] mb-14 md:mb-20 w-full overflow-hidden"
             variants={variants}
             initial="closed"
             animate={
@@ -46,7 +48,7 @@ export default function ModalContainer() {
             }}
           >
             {activeModal === 'travelForm' && <TravelFormLayout />}
-            {/* {activeModal === 'travelList' && <TravelListModal />} */}
+            {activeModal === 'travelList' && <TravelListView />}
             {activeModal === 'profile' && <ProfileView />}
           </motion.div>
         </div>

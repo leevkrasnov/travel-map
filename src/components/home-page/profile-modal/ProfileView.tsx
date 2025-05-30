@@ -9,7 +9,7 @@ export default function ProfileView() {
     <div className="h-full rounded-t-2xl text-davy-gray bg-gray-50 shadow-lg flex flex-col">
       <div className="xl:shadow-lg md:mx-20 xl:mx-32 2xl:mx-60 h-full">
         <BgImagesProfile />
-        <div className="z-10 mx-10 md:mt-10 lg:mx-60">
+        <div className="z-10 mx-10 lg:mx-60">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mt-14 lg:mt-20">
             <p>ПЕРСОНАЛЬНЫЕ</p>
             <p className="lg:mt-4">ДАННЫЕ</p>

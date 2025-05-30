@@ -32,7 +32,6 @@ export default function TravelFormLayout() {
       const coords = await getCoordinates(`${data.country}, ${data.city}`)
 
       await addTravelToFirestore({
-        id: crypto.randomUUID(),
         travelCountry: data.country,
         travelCity: data.city,
         travelDateStart: data.dateStart,
@@ -40,7 +39,6 @@ export default function TravelFormLayout() {
         coordinates: coords,
       })
       reset()
-      console.log(coords)
 
       if (!coords) {
         showAlert(

@@ -23,7 +23,7 @@ export default function TravelFormView({
     <div className="h-full bg-gray-50 text-davy-gray rounded-t-2xl shadow-lg flex flex-col">
       <div className="xl:shadow-lg md:mx-20 xl:mx-32 2xl:mx-60 h-full">
         <BgImagesTravelForm />
-        <div className="z-10 mx-10 md:mt-10 xl:mx-60">
+        <div className="z-10 mx-10 xl:mx-60">
           <h1 className="text-3xl md:text-4xl xl:text-5xl font-semibold mt-14 xl:mt-20">
             <p>ДОБАВИТЬ</p>
             <p className="xl:mt-4">ПУТЕШЕСТВИЕ</p>

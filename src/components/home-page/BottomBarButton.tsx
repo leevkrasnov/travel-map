@@ -16,6 +16,15 @@ export default function BottomBarButton({
 
   const isActive = activeModal === modalVariant
 
+  const roundedClass =
+    activeModal === 'profile'
+      ? 'rounded-l-xl'
+      : activeModal === 'travelList'
+      ? 'rounded-r-xl'
+      : activeModal === 'travelForm'
+      ? 'rounded-xl'
+      : ''
+
   return (
     <button
       onClick={onClick}
@@ -31,13 +40,13 @@ export default function BottomBarButton({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -1 }}
             layoutId="activeBackground"
-            className="absolute inset-0 bg-cadet-gray/60 shadow-xl rounded-xl"
+            className={`absolute inset-0 bg-cadet-gray/60 shadow-xl ${roundedClass} md:rounded-xl`}
             transition={{ type: 'spring', stiffness: 500, damping: 40 }}
           />
         )}
       </AnimatePresence>
       <div className="relative z-10 flex flex-col items-center justify-center">
-        <p className="text-lg lg:text-2xl font-semibold mt-2">{textVariant}</p>
+        <p className="md:text-lg lg:text-2xl font-semibold">{textVariant}</p>
       </div>
     </button>
   )
