@@ -29,7 +29,7 @@ export default function UserNameInput() {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={eventKeyDown}
             value={isDisabled ? displayName : inputValue}
-            className="bg-gray-100 border-2 border-cadet-gray focus:border-feldgrau pr-32 rounded-sm px-3 md:px-5 h-[50px] md:h-[60px] md:text-xl md:shadow-sm w-full duration-200 outline-none focus:outline-none"
+            className="bg-gray-100 border-2 border-cadet-gray focus:border-feldgrau pr-32 rounded-sm px-3 md:px-5 h-[45px] md:h-[55px] md:text-xl md:shadow-sm w-full duration-200 outline-none focus:outline-none"
           />
           {isDisabled ? (
             <EditButton
