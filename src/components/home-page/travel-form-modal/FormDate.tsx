@@ -34,7 +34,7 @@ export default function FormDate({
           error
             ? 'border-flame/50 focus:border-flame'
             : 'border-cadet-gray focus:border-feldgrau'
-        } rounded-sm px-2 md:px-5 h-[45px] md:h-[55px] md:text-xl md:shadow-sm w-full duration-200 outline-none focus:outline-none`}
+        } rounded-sm px-3 md:px-5 h-[45px] md:h-[55px] md:text-xl md:shadow-sm w-full duration-200 outline-none focus:outline-none`}
         aria-describedby={error ? `${id}-error` : undefined}
       />
       {error && (

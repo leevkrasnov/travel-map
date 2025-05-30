@@ -30,14 +30,14 @@ export default function UserNameInput() {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={eventKeyDown}
             value={isDisabled ? displayName : inputValue}
-            className="bg-gray-100 border-2 border-cadet-gray focus:border-feldgrau pr-32 rounded-sm px-2 md:px-5 h-[50px] md:h-[60px] md:text-xl md:shadow-sm w-full duration-200 outline-none focus:outline-none"
+            className="bg-gray-100 border-2 border-cadet-gray focus:border-feldgrau pr-32 rounded-sm px-3 md:px-5 h-[50px] md:h-[60px] md:text-xl md:shadow-sm w-full duration-200 outline-none focus:outline-none"
           />
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {isDisabled ? (
               <button
                 aria-label="Изменить имя"
                 onClick={handleClick}
-                className="hover:text-mount-pink right-8 absolute text-gray-500 top-1/2 -translate-y-1/2 cursor-pointer duration-400"
+                className="hover:text-mount-pink right-5 lg:right-6 absolute text-gray-500 top-1/2 -translate-y-1/2 cursor-pointer duration-400"
               >
                 <PenLine />
               </button>
@@ -46,7 +46,7 @@ export default function UserNameInput() {
                 <AnimatedButton
                   label="Сохранить изменения"
                   onClick={handleConfirm}
-                  styles="hover:text-mount-pink right-18 border-r border-gray-400 pr-4"
+                  styles="hover:text-mount-pink right-14 lg:right-16 border-r border-gray-400 pr-4"
                 >
                   {isLoading ? (
                     <LoaderCircle className="animate-spin text-mount-pink" />
@@ -58,7 +58,7 @@ export default function UserNameInput() {
                 <AnimatedButton
                   label="Отменить"
                   onClick={() => setIsDisabled(true)}
-                  styles="hover:text-flame right-8"
+                  styles="hover:text-flame right-5 lg:right-6"
                 >
                   <X />
                 </AnimatedButton>
