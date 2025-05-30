@@ -34,7 +34,7 @@ export default function DeleteUserButton() {
     <button
       onClick={handleDeleteUser}
       disabled={isLoading}
-      className="flex items-center justify-center bg-gray-50 cursor-pointer lg:mt-2 mt-6 px-2 w-[200px] text-gray-600 h-[45px] md:h-[60px] text-base rounded-full lg:text-lg disabled:text-flame hover:text-flame duration-500"
+      className="flex items-center justify-center bg-transparent cursor-pointer lg:mt-2 mt-6 px-2 w-[200px] font-semibold text-gray-600 h-[45px] md:h-[60px] text-base rounded-full lg:text-lg disabled:text-flame hover:text-flame duration-500"
     >
       {isLoadingDeleteUser ? (
         <LoaderCircle className="animate-spin" />

@@ -21,14 +21,14 @@ export default function TravelFormView({
 }: TravelFormProps) {
   return (
     <div className="h-full bg-gray-50 text-davy-gray rounded-t-2xl shadow-lg flex flex-col">
-      <div className="shadow-lg xl:mx-32 2xl:mx-60 h-full">
+      <div className="xl:shadow-lg md:mx-20 xl:mx-32 2xl:mx-60 h-full">
         <BgImagesTravelForm />
-        <div className="z-10 mx-10 xl:mx-60">
-          <h1 className="text-3xl xl:text-5xl font-semibold mt-14 xl:mt-20">
+        <div className="z-10 mx-10 md:mt-10 xl:mx-60">
+          <h1 className="text-3xl md:text-4xl xl:text-5xl font-semibold mt-14 xl:mt-20">
             <p>ДОБАВИТЬ</p>
             <p className="xl:mt-4">ПУТЕШЕСТВИЕ</p>
           </h1>
-          <p className="xl:text-xl text-mount-pink font-normal mt-20 xl:mx-32">
+          <p className="xl:text-xl text-mount-pink font-normal mt-14 md:mt-20 xl:mx-32">
             Заполни форму — это быстро
           </p>
           <form onSubmit={onSubmit} className="flex flex-col xl:px-32 mt-2">
@@ -78,7 +78,7 @@ export default function TravelFormView({
               </div>
             </div>
 
-            <div className="mt-8 xl:mt-5">
+            <div className="pt-4 xl:pt-6">
               <UniversalButton variant="ГОТОВО" disabled={isSubmitting} />
             </div>
           </form>

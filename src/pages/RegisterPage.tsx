@@ -5,7 +5,10 @@ import RegisterForm from '@/components/auth-page/RegisterForm'
 
 export default function RegisterPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div
+      className="flex items-center justify-center"
+      style={{ height: '100dvh' }}
+    >
       <div className="text-davy-gray relative flex flex-col h-screen w-screen lg:w-[600px] lg:h-[900px] bg-gray-50 rounded-xl shadow-lg">
         <section>
           <Link

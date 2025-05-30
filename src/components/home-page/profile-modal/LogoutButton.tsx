@@ -34,7 +34,7 @@ export default function LogoutButton() {
     <button
       onClick={handleLogOut}
       disabled={isLoading}
-      className="flex items-center justify-center bg-gray-800 border-2 border-gray-800 cursor-pointer mt-10 text-white font-semibold w-full h-[45px] md:h-[60px] rounded-full md:text-xl disabled:feldgrau hover:bg-feldgrau hover:border-feldgrau duration-500"
+      className="flex items-center justify-center bg-gray-800 border-2 border-gray-800 cursor-pointer mt-10 text-gray-300 font-semibold w-full h-[45px] md:h-[60px] rounded-full md:text-xl disabled:feldgrau hover:bg-feldgrau hover:border-feldgrau duration-500"
     >
       {isLoadingLogout ? <LoaderCircle className="animate-spin" /> : 'ВЫХОД'}
     </button>
