@@ -1,8 +1,7 @@
 import { Check, LoaderCircle, PenLine, X } from 'lucide-react'
-import { AnimatePresence } from 'motion/react'
 
 import { useUserNameInput } from '@/hooks/useUserNameInput'
-import AnimatedButton from './AnimatedButton'
+import EditButton from './EditButton'
 
 export default function UserNameInput() {
   const {
@@ -32,39 +31,37 @@ export default function UserNameInput() {
             value={isDisabled ? displayName : inputValue}
             className="bg-gray-100 border-2 border-cadet-gray focus:border-feldgrau pr-32 rounded-sm px-3 md:px-5 h-[50px] md:h-[60px] md:text-xl md:shadow-sm w-full duration-200 outline-none focus:outline-none"
           />
-          <AnimatePresence>
-            {isDisabled ? (
-              <button
-                aria-label="Изменить имя"
-                onClick={handleClick}
-                className="hover:text-mount-pink right-5 lg:right-6 absolute text-gray-500 top-1/2 -translate-y-1/2 cursor-pointer duration-400"
+          {isDisabled ? (
+            <EditButton
+              label="Изменить имя"
+              onClick={handleClick}
+              styles="hover:text-mount-pink right-5 lg:right-6"
+            >
+              <PenLine />
+            </EditButton>
+          ) : (
+            <div>
+              <EditButton
+                label="Сохранить изменения"
+                onClick={handleConfirm}
+                styles="hover:text-mount-pink right-14 lg:right-16 border-r border-gray-400 pr-4"
               >
-                <PenLine />
-              </button>
-            ) : (
-              <div>
-                <AnimatedButton
-                  label="Сохранить изменения"
-                  onClick={handleConfirm}
-                  styles="hover:text-mount-pink right-14 lg:right-16 border-r border-gray-400 pr-4"
-                >
-                  {isLoading ? (
-                    <LoaderCircle className="animate-spin text-mount-pink" />
-                  ) : (
-                    <Check />
-                  )}
-                </AnimatedButton>
+                {isLoading ? (
+                  <LoaderCircle className="animate-spin text-mount-pink" />
+                ) : (
+                  <Check />
+                )}
+              </EditButton>
 
-                <AnimatedButton
-                  label="Отменить"
-                  onClick={() => setIsDisabled(true)}
-                  styles="hover:text-flame right-5 lg:right-6"
-                >
-                  <X />
-                </AnimatedButton>
-              </div>
-            )}
-          </AnimatePresence>
+              <EditButton
+                label="Отменить"
+                onClick={() => setIsDisabled(true)}
+                styles="hover:text-flame right-5 lg:right-6"
+              >
+                <X />
+              </EditButton>
+            </div>
+          )}
         </div>
       </div>
     </div>
