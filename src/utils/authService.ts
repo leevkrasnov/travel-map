@@ -98,7 +98,10 @@ export const updateUserName = async (newUserName: string) => {
 export const deleteCurrentUser = async () => {
   try {
     useLoadingStore.getState().setIsLoading(true)
-    deleteUser(auth.currentUser!)
+
+    await deleteUser(auth.currentUser!)
+
+    useAuthStore.getState().setUser(null)
   } catch (error) {
     console.error('Не удалось удалить пользователя', error)
     throw error

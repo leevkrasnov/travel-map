@@ -41,19 +41,19 @@ export default function PasswordForm({
           error
             ? 'border-flame/50 focus:border-flame'
             : 'border-cadet-gray focus:border-feldgrau'
-        } rounded-sm px-5 h-[45px] md:h-[55px] text-lg md:shadow-sm w-full duration-200 outline-none focus:outline-none`}
+        } rounded-sm px-2 md:px-5 h-[45px] md:h-[55px] md:text-xl md:shadow-sm w-full duration-200 outline-none focus:outline-none`}
         aria-describedby={error ? `${id}-error` : undefined}
       />
       <button
         type="button"
         onClick={() => setShowPass((prev) => !prev)}
         aria-label={showPass ? 'Скрыть пароль' : 'Показать пароль'}
-        className="absolute cursor-pointer right-4 top-1/2 -translate-y-1/2"
+        className="absolute text-gray-400 hover:text-gray-600 duration-300 ease-in-out cursor-pointer right-4 top-1/2 -translate-y-1/2"
       >
         {showPass ? (
-          <EyeClosed size={24} color="#9da2ab" strokeWidth={1.5} />
+          <EyeClosed size={24} strokeWidth={1.5} />
         ) : (
-          <Eye size={24} color="#9da2ab" strokeWidth={1.5} />
+          <Eye size={24} strokeWidth={1.5} />
         )}
       </button>
       {error && (

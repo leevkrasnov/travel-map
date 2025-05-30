@@ -1,22 +1,23 @@
-import { useNavigate } from 'react-router'
 import { LoaderCircle } from 'lucide-react'
 
 import { logoutUser } from '@/utils/authService'
 import { useBottomBarStore } from '@/store/useBottombarStore'
 import { useLoadingStore } from '@/store/useLoadingStore'
 import { useAlertStore } from '@/store/useAlertStore'
+import { useState } from 'react'
 
 export default function LogoutButton() {
-  const navigate = useNavigate()
   const isLoading = useLoadingStore((state) => state.isLoading)
   const reset = useBottomBarStore((state) => state.reset)
   const showAlert = useAlertStore((state) => state.showAlert)
+  const [isLoadingLogout, setIsLoadingLogout] = useState(false)
 
   const handleLogOut = async () => {
     try {
-      reset()
+      setIsLoadingLogout(true)
       await logoutUser()
-      navigate('/')
+
+      reset()
     } catch (error) {
       showAlert(
         'error',
@@ -24,6 +25,8 @@ export default function LogoutButton() {
       )
       console.error('Не удалось выйти из профиля')
       throw error
+    } finally {
+      setIsLoadingLogout(false)
     }
   }
 
@@ -33,7 +36,7 @@ export default function LogoutButton() {
       disabled={isLoading}
       className="flex items-center justify-center bg-gray-800 border-2 border-gray-800 cursor-pointer mt-10 text-white font-semibold w-full h-[45px] md:h-[60px] rounded-full md:text-xl disabled:feldgrau hover:bg-feldgrau hover:border-feldgrau duration-500"
     >
-      {isLoading ? <LoaderCircle className="animate-spin" /> : 'ВЫХОД'}
+      {isLoadingLogout ? <LoaderCircle className="animate-spin" /> : 'ВЫХОД'}
     </button>
   )
 }

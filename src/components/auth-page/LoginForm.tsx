@@ -36,14 +36,11 @@ export default function LoginForm() {
 
       setTimeout(() => {
         showAlert('info', `${user?.displayName?.trim()}, с возвращением!`)
-      }, 1000)
+      }, 1500)
 
       reset()
     } catch (error) {
-      showAlert(
-        'error',
-        'Произошла ошибка на сервере. Пожалуйста, повтори операцию'
-      )
+      showAlert('error', 'Пожалуйста, проверь данные и попробуй ещё раз')
       if (error instanceof FirebaseError) {
         handleFirebaseError(error, setError)
       }
