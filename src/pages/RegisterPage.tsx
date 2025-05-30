@@ -9,7 +9,7 @@ export default function RegisterPage() {
       className="flex items-center justify-center"
       style={{ height: '100dvh' }}
     >
-      <div className="text-davy-gray relative flex flex-col h-screen w-screen lg:w-[600px] lg:h-[900px] bg-gray-50 rounded-xl shadow-lg">
+      <div className="text-davy-gray relative flex flex-col h-screen w-screen lg:w-[600px] lg:h-[900px] px-8 lg:px-10 bg-gray-50 rounded-xl lg:shadow-lg">
         <section>
           <Link
             to="/Auth"
