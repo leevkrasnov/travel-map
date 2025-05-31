@@ -41,7 +41,7 @@ export default function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-      <div className="mb-6 shadow-sm rounded-md p-5 md:shadow-none md:mb-0 md:p-0">
+      <div className="mb-6">
         <p className="md:text-lg text-mount-pink mb-3">
           Как я могу к тебе обращаться?
         </p>
