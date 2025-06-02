@@ -40,7 +40,7 @@ export default function FormDate({
       {error && (
         <p
           id={`${id}-error`}
-          className="absolute bottom-0 right-3 text-flame text-xs bg-gray-50 px-1 transform translate-y-1/2"
+          className="absolute flex items-center bottom-0 right-3 text-flame text-[10px] md:text-xs bg-gray-50 px-1 transform translate-y-1/2"
         >
           {error.message}
         </p>
