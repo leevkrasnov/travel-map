@@ -18,7 +18,7 @@ export default function RegisterPage() {
             <ChevronLeft size={35} strokeWidth={1} />
             Назад
           </Link>
-          <h1 className="text-3xl lg:text-5xl font-semibold lg:mt-32 mt-42 mb-8 lg:mb-18">
+          <h1 className="text-3xl lg:text-5xl font-semibold lg:mt-32 mt-36 mb-8 lg:mb-18">
             РЕГИСТРАЦИЯ
           </h1>
           {/* <h2 className="mt-14 mb-3 text-lg px-10 text-gray-600">
@@ -26,7 +26,7 @@ export default function RegisterPage() {
           </h2> */}
         </section>
 
-        <section className="pb-20 px-8 lg:px-10">
+        <section className="pb-20 px-4 lg:px-10">
           <RegisterForm />
         </section>
       </div>
