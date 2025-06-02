@@ -32,8 +32,8 @@ export default function TravelFormLayout() {
       const coords = await getCoordinates(`${data.country}, ${data.city}`)
 
       await addTravelToFirestore({
-        travelCountry: data.country,
-        travelCity: data.city,
+        travelCountry: data.country.trim(),
+        travelCity: data.city.trim(),
         travelDateStart: data.dateStart,
         travelDateEnd: data.dateEnd,
         coordinates: coords,
@@ -43,13 +43,13 @@ export default function TravelFormLayout() {
       if (!coords) {
         showAlert(
           'info',
-          `Я добавил запись, но не смог определить координаты для: ${data.city}, ${data.country}`,
+          `Я добавил запись, но не смог определить координаты для: ${data.city.trim()}, ${data.country.trim()}`,
           7000
         )
       } else {
         showAlert(
           'success',
-          `${displayName}, ты успешно добавил поездку в ${data.city} (${data.country})`
+          `${displayName}, ты успешно добавил поездку в ${data.city.trim()} (${data.country.trim()})`
         )
       }
     } catch (error) {
