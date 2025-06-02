@@ -8,6 +8,7 @@ import { useTravelStore } from '@/store/useTravelStore'
 import { useTravelsListener } from '@/hooks/useTravelsListener'
 import LoadingSpinner from '../common/LoadingSpinner'
 import { useMapFocusStore } from '@/store/useMapFocusStore'
+import { useAlertStore } from '@/store/useAlertStore'
 
 import { YMap, YMapLocationRequest } from '@yandex/ymaps3-types'
 
@@ -18,6 +19,8 @@ export default function YandexMap() {
 
   const coords = useMapFocusStore((state) => state.coordinates)
   const zoom = useMapFocusStore((state) => state.zoom)
+
+  const showAlert = useAlertStore((state) => state.showAlert)
 
   const [reactified, setReactified] = useState<{
     YMap: any
@@ -105,9 +108,19 @@ export default function YandexMap() {
             .filter((travel) => travel.coordinates != null)
             .map((travel) => (
               <YMapMarker key={travel.id} coordinates={travel.coordinates}>
-                <div className="w-10 relative">
+                <div className="w-10 h-10 relative">
                   <div className="absolute top-[-42px] left-[-24px]">
-                    <img src={mapPin} height={48} width={48} alt="map pin" />
+                    <button
+                      onClick={() =>
+                        showAlert(
+                          'info',
+                          `Поездка в ${travel.travelCity}, ${travel.travelCountry}`
+                        )
+                      }
+                      className="w-full h-full cursor-pointer"
+                    >
+                      <img src={mapPin} height={48} width={48} alt="map pin" />
+                    </button>
                   </div>
                 </div>
               </YMapMarker>

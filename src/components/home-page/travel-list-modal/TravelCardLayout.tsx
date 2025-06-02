@@ -39,7 +39,7 @@ export default function TravelCardLayout() {
 
   return (
     <div>
-      {travels ? (
+      {travels.length ? (
         <div className="absolute inset-0 no-scrollbar overflow-auto pt-24 scroll-smooth flex flex-wrap justify-center gap-x-12 gap-y-20">
           {filteredTravels.map((travel) => (
             <TravelCardView
@@ -52,7 +52,7 @@ export default function TravelCardLayout() {
           ))}
         </div>
       ) : (
-        <div className="w-full h-[100px] flex items-center justify-center text-sm lg:text-lg text-gray-400 mt-12 rotate-1 rounded-2xl shadow-sm border border-gray-200 bg-white absolute inset-0">
+        <div className="w-full h-[100px] flex items-center justify-center text-sm lg:text-lg text-gray-400 mt-12 rounded-2xl shadow-sm border border-gray-200 bg-white absolute inset-0">
           Пусто
         </div>
       )}
