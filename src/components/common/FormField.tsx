@@ -1,4 +1,4 @@
-import { firstLetterUp } from '@/utils/edit'
+import { firstLetterUp } from '@/utils/common'
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 
 interface FormFieldProps {

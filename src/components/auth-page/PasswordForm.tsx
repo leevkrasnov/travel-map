@@ -2,7 +2,7 @@ import { Eye, EyeClosed } from 'lucide-react'
 import { useState } from 'react'
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 
-import { firstLetterUp } from '@/utils/edit'
+import { firstLetterUp } from '@/utils/common'
 
 interface FormFieldProps {
   id: string
