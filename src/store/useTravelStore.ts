@@ -14,6 +14,7 @@ interface TravelStoreState {
   setTravels: (travels: Travel[]) => void
   addTravelToStore: (travel: Travel) => void
   clearTravels: () => void
+  removeTravelFromStore: (id: string) => void
 }
 
 export const useTravelStore = create<TravelStoreState>((set) => ({
@@ -22,4 +23,8 @@ export const useTravelStore = create<TravelStoreState>((set) => ({
   addTravelToStore: (travel) =>
     set((state) => ({ travels: [...state.travels, travel] })),
   clearTravels: () => set({ travels: [] }),
+  removeTravelFromStore: (id: string) =>
+    set((state) => ({
+      travels: state.travels.filter((travel) => travel.id !== id),
+    })),
 }))

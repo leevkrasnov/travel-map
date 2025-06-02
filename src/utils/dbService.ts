@@ -1,4 +1,4 @@
-import { doc, setDoc, collection, getDocs } from 'firebase/firestore'
+import { doc, setDoc, collection, getDocs, deleteDoc } from 'firebase/firestore'
 
 import { auth, db } from '../firebase'
 import { useTravelStore } from '@/store/useTravelStore'
@@ -46,24 +46,19 @@ export const getTravelsFromFirestore = async () => {
   }
 }
 
-// export const getActualTravels = () => {
-//   const currentUser = auth.currentUser?.uid
+export const deleteTravel = async (travelId: string) => {
+  const currentUser = auth.currentUser?.uid
 
-//   if (currentUser) {
-//     try {
-//       const travelsRef = collection(db, 'users', currentUser, 'travels')
-//       const unsub = onSnapshot(travelsRef, (snapshot) => {
-//         snapshot.docChanges().forEach((change) => {
-//           const travel = change.doc.data() as Travel
-//           if (change.type === 'added') {
-//             useTravelStore.getState().addTravelToStore(travel)
-//           }
-//         })
-//       })
-//       return unsub
-//     } catch (error) {
-//       console.error('Ошибка при загрузке поездок:', error)
-//       throw error
-//     }
-//   }
-// }
+  if (currentUser) {
+    try {
+      useLoadingStore.getState().setIsLoading(true)
+      await deleteDoc(doc(db, 'users', currentUser, 'travels', travelId))
+      useTravelStore.getState().removeTravelFromStore(travelId)
+    } catch (error) {
+      console.error('Ошибка удаления путешествия', error)
+      throw error
+    } finally {
+      useLoadingStore.getState().setIsLoading(false)
+    }
+  }
+}

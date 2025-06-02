@@ -6,11 +6,15 @@ import { ArrowUpRight } from 'lucide-react'
 interface TravelCardViewProps {
   travel: Travel
   onShowOnMap: (coords: [number, number]) => void
+  handleDelete: (travel: Travel) => void
+  isLoading: boolean
 }
 
 export default function TravelCardView({
   travel,
   onShowOnMap,
+  handleDelete,
+  isLoading,
 }: TravelCardViewProps) {
   const cardVariants: Variants = {
     offscreen: {
@@ -48,7 +52,11 @@ export default function TravelCardView({
       >
         <BgImageTravelCard />
 
-        <button className="text-sm lg:text-md absolute lg:bottom-4 bottom-3 left-4 lg:left-6 cursor-pointer text-flame hover:font-medium duration-200">
+        <button
+          disabled={isLoading}
+          onClick={() => handleDelete(travel)}
+          className="text-sm lg:text-md absolute lg:bottom-4 bottom-3 left-4 lg:left-6 cursor-pointer text-flame hover:text-amber-800 transition-colors"
+        >
           Забыть поездку
         </button>
 
