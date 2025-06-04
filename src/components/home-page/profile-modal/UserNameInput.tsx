@@ -37,7 +37,7 @@ export default function UserNameInput() {
               onClick={handleClick}
               styles="hover:text-mount-pink right-5 lg:right-6"
             >
-              <PenLine />
+              <PenLine strokeWidth={1.7} />
             </EditButton>
           ) : (
             <div>
@@ -49,7 +49,7 @@ export default function UserNameInput() {
                 {isLoading ? (
                   <LoaderCircle className="animate-spin text-mount-pink" />
                 ) : (
-                  <Check />
+                  <Check strokeWidth={1.7} />
                 )}
               </EditButton>
 
@@ -58,7 +58,7 @@ export default function UserNameInput() {
                 onClick={() => setIsDisabled(true)}
                 styles="hover:text-flame right-5 lg:right-6"
               >
-                <X />
+                <X strokeWidth={1.7} />
               </EditButton>
             </div>
           )}
